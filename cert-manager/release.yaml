@@ -1,0 +1,24 @@
+---
+apiVersion: flux.weave.works/v1beta1
+kind: HelmRelease
+metadata:
+  name: cert-manager
+  namespace: cert-manager
+  annotations:
+    flux.weave.works/automated: "true"
+    flux.weave.works/tag.chart-image: glob:v0.*
+spec:
+  releaseName: cert-manager
+  chart:
+    repository: https://kubernetes-charts.storage.googleapis.com/
+    name: cert-manager
+    version: v0.6.7
+  values:
+    image:
+      repository: quay.io/jetstack/cert-manager-controller
+      tag: v0.6.2
+    securityContext:
+      enabled: true
+    ingressShim:
+      defaultIssuerName: letsencrypt-production
+      defaultIssuerKind: ClusterIssuer
