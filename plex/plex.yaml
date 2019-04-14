@@ -13,6 +13,7 @@ spec:
     ref: master
     path: plex
   values:
+    plexClaimSecretName: plex-claim
     persistence:
       config:
         storageClass: zfs
