@@ -16,5 +16,5 @@ spec:
     classes:
       - name: zfs
         hostDir: /tank
-        storageClass:
-          reclaimPolicy: Retain
+        storageClass: true
+        reclaimPolicy: Retain
