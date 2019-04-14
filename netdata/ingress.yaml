@@ -1,0 +1,22 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: netdata
+  namespace: netdata
+  labels:
+    app: netdata
+  annotations:
+    kubernetes.io/tls-acme: "true"
+spec:
+  rules:
+  - host: stats.srueg.ch
+    http:
+      paths:
+      - backend:
+          serviceName: netdata
+          servicePort: proxy
+        path: /
+  tls:
+  - hosts:
+    - stats.srueg.ch
+    secretName: netdata-tls

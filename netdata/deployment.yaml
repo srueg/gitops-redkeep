@@ -1,0 +1,95 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: netdata
+  namespace: netdata
+  labels:
+    app: netdata
+  annotations:
+    flux.weave.works/automated: "true"
+    flux.weave.works/tag.oauth-proxy: regexp:^v(\d+\.)+\d+$
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: netdata
+  template:
+    metadata:
+      labels:
+        app: netdata
+    spec:
+      containers:
+      - name: oauth-proxy
+        image: quay.io/pusher/oauth2_proxy:v3.2.0
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 4180
+          name: proxy
+        args:
+        - --http-address=:4180
+        - --https-address=
+        - --provider=github
+        - --email-domain=*
+        - -github-org=srueg-labs
+        - --upstream=http://localhost:19999
+        env:
+        - name: OAUTH2_PROXY_CLIENT_ID
+          value: c258ac8036bf167fd5d5
+        - name: OAUTH2_PROXY_CLIENT_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: oauth-config
+              key: client-secret
+        - name: OAUTH2_PROXY_COOKIE_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: oauth-config
+              key: cookie-secret
+        livenessProbe:
+          initialDelaySeconds: 30
+          httpGet:
+            path: /ping
+            port: proxy
+        readinessProbe:
+          httpGet:
+            path: /ping
+            port: proxy
+      - name: netdata
+        image: docker.io/netdata/netdata:v1.13.0
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 19999
+          name: netdata
+        livenessProbe:
+          initialDelaySeconds: 30
+          httpGet:
+            port: netdata
+        readinessProbe:
+          httpGet:
+            port: netdata
+        volumeMounts:
+        - mountPath: /host/proc
+          name: proc
+          readOnly: true
+        - mountPath: /host/sys
+          name: sys
+          readOnly: true
+        - mountPath: /var/run/docker.sock
+          name: docker
+          readOnly: true
+        securityContext:
+          privileged: true
+          capabilities:
+            add: ['SYS_PTRACE']
+      restartPolicy: Always
+      volumes:
+      - name: proc
+        hostPath:
+          path: /proc
+      - name: sys
+        hostPath:
+          path: /sys
+      - name: docker
+        hostPath:
+          path: /var/run/docker.sock
