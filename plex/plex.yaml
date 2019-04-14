@@ -21,6 +21,7 @@ spec:
           matchLabels:
             usage: plex-config
       data:
+        subPath: media
         storageClass: zfs
         selector:
           matchLabels:
