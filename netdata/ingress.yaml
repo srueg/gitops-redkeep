@@ -6,7 +6,7 @@ metadata:
   labels:
     app: netdata
   annotations:
-    certmanager.k8s.io/cluster-issuer: letsencrypt-staging
+    kubernetes.io/tls-acme: "true"
     certmanager.k8s.io/acme-http01-edit-in-place: "true"
 spec:
   rules:
