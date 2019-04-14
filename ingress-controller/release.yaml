@@ -5,7 +5,7 @@ metadata:
   name: nginx-ingress
   namespace: ingress-controller
   annotations:
-    flux.weave.works/automated: "true"
+    flux.weave.works/automated: "false"
     flux.weave.works/tag.chart-image: semver:*
 spec:
   releaseName: nginx-ingress
@@ -17,7 +17,7 @@ spec:
     controller:
       image:
         repository: quay.io/kubernetes-ingress-controller/nginx-ingress-controller
-        tag: 0.24.1
+        tag: 0.24.0
       hostNetwork: true
       dnsPolicy: ClusterFirstWithHostNet
     podSecurityPolicy:
