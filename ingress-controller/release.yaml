@@ -1,0 +1,23 @@
+apiVersion: flux.weave.works/v1beta1
+kind: HelmRelease
+metadata:
+  name: nginx-ingress
+  namespace: ingress-controller
+  annotations:
+    flux.weave.works/automated: "true"
+    flux.weave.works/tag.chart-image: semver:*
+spec:
+  releaseName: nginx-ingress
+  chart:
+    repository: https://kubernetes-charts.storage.googleapis.com/
+    name: nginx-ingress
+    version: 1.4.0
+  values:
+    controller:
+      image:
+        repository: quay.io/kubernetes-ingress-controller/nginx-ingress-controller
+        tag: 0.23.0
+      hostNetwork: true
+      dnsPolicy: ClusterFirstWithHostNet
+    podSecurityPolicy:
+      enabled: true
