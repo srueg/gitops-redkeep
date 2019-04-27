@@ -1,3 +1,4 @@
+---
 apiVersion: flux.weave.works/v1beta1
 kind: HelmRelease
 metadata:
@@ -15,7 +16,7 @@ spec:
   values:
     image:
       repository: docker.io/linuxserver/radarr
-      tag: v0.2.0.1293-ls5
+      tag: v0.2.0.1293-ls12
     persistence:
       config:
         storageClass: zfs
