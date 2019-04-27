@@ -28,4 +28,5 @@ spec:
       externalPort: 1194
       nodePort: 31194
     persistence:
-      enabled: false
+      enabled: true
+      existingClaim: openvpn-config
