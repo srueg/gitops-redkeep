@@ -25,7 +25,7 @@ spec:
             usage: nzbget-config
       downloads:
         size: 30Gi
-        storageClass: zfs
+        storageClass: ssd
         selector:
           matchLabels:
             usage: nzbget-downloads
