@@ -24,5 +24,4 @@ spec:
     service:
       type: NodePort
     persistence:
-      enabled: true
-      existingClaim: openvpn-config
+      enabled: false
