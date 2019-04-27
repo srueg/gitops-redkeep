@@ -1,0 +1,28 @@
+---
+apiVersion: flux.weave.works/v1beta1
+kind: HelmRelease
+metadata:
+  name: ombi
+  namespace: plex
+  annotations:
+    flux.weave.works/automated: "true"
+    flux.weave.works/tag.chart-image: glob:3.0.*
+spec:
+  releaseName: ombi
+  chart:
+    git: https://github.com/srueg/helm-charts.git
+    ref: master
+    path: ombi
+  values:
+    image:
+      repository: docker.io/linuxserver/ombi
+      tag: 3.0.4489-ls38
+    persistence:
+      config:
+        storageClass: zfs
+      selector:
+        matchLabels:
+          usage: ombi-config
+    ingress:
+      enabled: true
+      host: ombi.srueg.ch
