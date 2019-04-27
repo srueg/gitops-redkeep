@@ -8,7 +8,7 @@ spec:
   releaseName: localvolume-provisioner
   chart:
     git: https://github.com/kubernetes-incubator/external-storage.git
-    ref: v5.3.0-alpha.1
+    ref: fbfedbf60da4e5ee25a3151bfe8504f3e3281319
     path: local-volume/helm/provisioner/
   values:
     common:
