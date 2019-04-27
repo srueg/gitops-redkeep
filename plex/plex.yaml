@@ -13,6 +13,9 @@ spec:
     ref: master
     path: plex
   values:
+    image:
+      repository: docker.io/plexinc/pms-docker
+      tag: 1.14.1.5488-cc260c476
     plexClaimSecretName: plex-claim
     persistence:
       config:
