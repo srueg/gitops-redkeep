@@ -1,3 +1,4 @@
+---
 apiVersion: flux.weave.works/v1beta1
 kind: HelmRelease
 metadata:
@@ -15,7 +16,7 @@ spec:
   values:
     image:
       repository: docker.io/plexinc/pms-docker
-      tag: 1.14.1.5488-cc260c476
+      tag: 1.15.4.993-bb4a2cb6c
     plexClaimSecretName: plex-claim
     persistence:
       config:
