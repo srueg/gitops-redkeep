@@ -18,3 +18,7 @@ spec:
         hostDir: /tank
         storageClass: true
         reclaimPolicy: Retain
+      - name: ssd
+        hostDir: /mnt/ssd
+        storageClass: true
+        reclaimPolicy: Retain
