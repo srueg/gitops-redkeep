@@ -7,10 +7,10 @@ metadata:
 spec:
   releaseName: openvpn
   chart:
-    repository: https://kubernetes-charts.storage.googleapis.com/
+    repository: https://kubernetes-charts.storage.googleapis.com
     name: openvpn
     version: 3.12.3
-  value:
+  values:
     image:
       repository: quay.io/srueg/openvpn
       tag: latest
