@@ -1,0 +1,27 @@
+apiVersion: flux.weave.works/v1beta1
+kind: HelmRelease
+metadata:
+  name: radarr
+  namespace: plex
+  annotations:
+    flux.weave.works/automated: "true"
+    flux.weave.works/tag.chart-image: glob:v0.*
+spec:
+  releaseName: radarr
+  chart:
+    git: https://github.com/srueg/helm-charts.git
+    ref: master
+    path: radarr
+  values:
+    image:
+      repository: docker.io/linuxserver/radarr
+      tag: v0.2.0.1293-ls5
+    persistence:
+      config:
+        storageClass: zfs
+        selector:
+          matchLabels:
+            usage: radarr-config
+    ingress:
+      enabled: true
+      host: radarr.srueg.ch

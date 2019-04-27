@@ -1,0 +1,27 @@
+apiVersion: flux.weave.works/v1beta1
+kind: HelmRelease
+metadata:
+  name: sonarr
+  namespace: plex
+  annotations:
+    flux.weave.works/automated: "true"
+    flux.weave.works/tag.chart-image: glob:2.0.*
+spec:
+  releaseName: sonarr
+  chart:
+    git: https://github.com/srueg/helm-charts.git
+    ref: master
+    path: sonarr
+  values:
+    image:
+      repository: docker.io/linuxserver/sonarr
+      tag: 2.0.0.5318-ls31
+    persistence:
+      config:
+        storageClass: zfs
+      selector:
+          matchLabels:
+            usage: sonarr-config
+    ingress:
+      enabled: true
+      host: sonarr.srueg.ch
