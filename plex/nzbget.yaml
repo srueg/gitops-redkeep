@@ -24,6 +24,7 @@ spec:
           matchLabels:
             usage: nzbget-config
       downloads:
+        size: 30Gi
         storageClass: zfs
         selector:
           matchLabels:
