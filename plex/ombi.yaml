@@ -25,4 +25,4 @@ spec:
           usage: ombi-config
     ingress:
       enabled: true
-      host: ombi.srueg.ch
+      host: requests.srueg.ch
