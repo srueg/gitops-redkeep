@@ -1,0 +1,32 @@
+apiVersion: flux.weave.works/v1beta1
+kind: HelmRelease
+metadata:
+  name: nzbget
+  namespace: plex
+  annotations:
+    flux.weave.works/automated: "true"
+    flux.weave.works/tag.chart-image: glob:v20*
+spec:
+  releaseName: nzbget
+  chart:
+    git: https://github.com/srueg/helm-charts.git
+    ref: master
+    path: nzbget
+  values:
+    image:
+      repository: docker.io/linuxserver/nzbget
+      tag: v20.0-ls5
+    persistence:
+      config:
+        storageClass: zfs
+        selector:
+          matchLabels:
+            usage: nzbget-config
+      downloads:
+        storageClass: zfs
+        selector:
+          matchLabels:
+            usage: nzbget-downloads
+    ingress:
+      enabled: true
+      host: nzbget.srueg.ch
