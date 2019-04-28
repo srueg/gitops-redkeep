@@ -17,7 +17,7 @@ spec:
     controller:
       image:
         repository: quay.io/kubernetes-ingress-controller/nginx-ingress-controller
-        tag: 0.24.1
+        tag: webhook
       hostNetwork: true
       dnsPolicy: ClusterFirstWithHostNet
       extraArgs:
