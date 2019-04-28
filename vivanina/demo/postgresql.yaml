@@ -1,0 +1,16 @@
+---
+apiVersion: flux.weave.works/v1beta1
+kind: HelmRelease
+metadata:
+  name: postgresql
+  namespace: vivanina-demo
+spec:
+  chart:
+    repository: https://kubernetes-charts.storage.googleapis.com/
+    name: postgresql
+    version: 3.18.3
+  values:
+    postgresqlDatabase: vivanina-demo
+    existingSecret: vivanina
+    persistence:
+      existingClaim: postgresql

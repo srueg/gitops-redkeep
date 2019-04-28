@@ -1,0 +1,62 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: vivanina
+  name: vivanina
+  namespace: vivanina-demo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: vivanina
+  template:
+    metadata:
+      labels:
+        app: vivanina
+    spec:
+      enableServiceLinks: false
+      imagePullSecrets:
+      - name: srueg-dockerhub
+      containers:
+      - name: calabouxi
+        image: docker.io/srueg/calabouxi:test
+        imagePullPolicy: Always
+        env:
+        - name: DJANGO_BUCKET_NAME
+          value: calabouxi-demo
+        - name: GOOGLE_APPLICATION_CREDENTIALS
+          value: /run/secrets/gcloud/srueg-labor-6fb30143dbef.json
+        - name: DJANGO_DB_HOST
+          value: vivanina-demo-postgresql-postgresql
+        - name: DJANGO_DB_PW
+          valueFrom:
+            secretKeyRef:
+              name: vivanina
+              key: postgresql-password
+        - name: DJANGO_SECRET_KEY
+          valueFrom:
+            secretKeyRef:
+              name: vivanina
+              key: DJANGO_SECRET_KEY
+        ports:
+          - name: http
+            containerPort: 8000
+        livenessProbe:
+          initialDelaySeconds: 60
+          httpGet:
+            port: http
+            path: /healthz
+        readinessProbe:
+          initialDelaySeconds: 3
+          httpGet:
+            port: http
+            path: /healthz
+        volumeMounts:
+        - name: gcloud-credentials
+          mountPath: /run/secrets/gcloud/
+          readOnly: true
+      volumes:
+      - name: gcloud-credentials
+        secret:
+          secretName: gcloud-credentials

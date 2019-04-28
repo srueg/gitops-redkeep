@@ -1,0 +1,23 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/tls-acme: "true"
+    certmanager.k8s.io/acme-http01-edit-in-place: "true"
+  name: vivanina
+  namespace: vivanina-demo
+  labels:
+    app: vivanina
+spec:
+  rules:
+  - host: demo.vivanina.ch
+    http:
+      paths:
+      - backend:
+          serviceName: vivanina
+          servicePort: http
+        path: /
+  tls:
+  - hosts:
+    - demo.vivanina.ch
+    secretName: vivanina-tls
