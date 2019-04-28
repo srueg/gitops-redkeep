@@ -24,3 +24,7 @@ spec:
       defaultIssuerKind: ClusterIssuer
     extraArgs:
       - --dns01-self-check-nameservers="1.1.1.1:53"
+    podDnsPolicy: "None"
+    podDnsConfig:
+      nameservers:
+        - "192.168.1.1"
