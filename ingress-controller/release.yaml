@@ -5,19 +5,19 @@ metadata:
   name: nginx-ingress
   namespace: ingress-controller
   annotations:
-    flux.weave.works/automated: "false"
+    flux.weave.works/automated: "true"
     flux.weave.works/tag.chart-image: semver:*
 spec:
   releaseName: nginx-ingress
   chart:
     repository: https://kubernetes-charts.storage.googleapis.com/
     name: nginx-ingress
-    version: 1.4.0
+    version: 1.6.0
   values:
     controller:
       image:
         repository: quay.io/kubernetes-ingress-controller/nginx-ingress-controller
-        tag: 0.24.0
+        tag: 0.24.1
       hostNetwork: true
       dnsPolicy: ClusterFirstWithHostNet
       extraArgs:
