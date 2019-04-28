@@ -20,5 +20,7 @@ spec:
         tag: 0.24.0
       hostNetwork: true
       dnsPolicy: ClusterFirstWithHostNet
+      extraArgs:
+        default-ssl-certificate: ingress-controller/srueg-ch-wildcard-tls
     podSecurityPolicy:
       enabled: true

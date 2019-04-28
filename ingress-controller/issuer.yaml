@@ -1,0 +1,20 @@
+---
+apiVersion: certmanager.k8s.io/v1alpha1
+kind: Issuer
+metadata:
+  name: letsencrypt-production
+  namespace: ingress-controller
+spec:
+  acme:
+    email: simon@rueggs.ch
+    server: https://acme-v02.api.letsencrypt.org/directory
+    privateKeySecretRef:
+      name: letsencrypt-production-account-key
+    dns01:
+      providers:
+      - name: clouddns-provider
+        clouddns:
+          project: srueg-labor
+          serviceAccountSecretRef:
+            name: clouddns-dns01-solver-svc-acct
+            key: key.json

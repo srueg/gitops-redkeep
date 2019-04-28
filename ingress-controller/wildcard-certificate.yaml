@@ -1,0 +1,20 @@
+---
+apiVersion: certmanager.k8s.io/v1alpha1
+kind: Certificate
+metadata:
+  name: srueg-ch-wildcard
+  namespace: ingress-controller
+spec:
+  secretName: srueg-ch-wildcard-tls
+  issuerRef:
+    name: letsencrypt-production
+  commonName: "*.srueg.ch"
+  dnsNames:
+    - srueg.ch
+  acme:
+    config:
+    - dns01:
+        provider: clouddns-provider
+      domains:
+        - "*.srueg.ch"
+        - srueg.ch
