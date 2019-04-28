@@ -26,7 +26,7 @@ spec:
       dhcpOptionDomain: false
       conf: |
         push "route 192.168.0.0 255.255.0.0"
-        push "dhcp-option DNS 1.1.1.1"
+        push "dhcp-option DNS 192.168.1.1"
         max-clients 32
         client-to-client
     service:
