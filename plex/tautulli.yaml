@@ -1,0 +1,28 @@
+---
+apiVersion: flux.weave.works/v1beta1
+kind: HelmRelease
+metadata:
+  name: tautulli
+  namespace: plex
+  annotations:
+    flux.weave.works/automated: "true"
+    flux.weave.works/tag.chart-image: glob:v2.*
+spec:
+  releaseName: tautulli
+  chart:
+    git: https://github.com/srueg/helm-charts.git
+    ref: master
+    path: tautulli
+  values:
+    image:
+      repository: docker.io/linuxserver/tautulli
+      tag: v2.1.28
+    persistence:
+      config:
+        storageClass: zfs
+      selector:
+        matchLabels:
+          usage: tautulli-config
+    ingress:
+      enabled: true
+      host: tautulli.srueg.ch
