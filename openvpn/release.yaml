@@ -19,8 +19,10 @@ spec:
       OVPN_NETWORK: 192.168.99.0
       OVPN_SUBNET: 255.255.255.0
       OVPN_PROTO: udp
-      OVPN_K8S_POD_NETWORK: nil
-      OVPN_K8S_POD_SUBNET: nil
+      OVPN_K8S_POD_NETWORK: false
+      OVPN_K8S_POD_SUBNET: false
+      OVPN_K8S_SVC_NETWORK: false
+      OVPN_K8S_SVC_SUBNET: false
       dhcpOptionDomain: false
     service:
       type: NodePort
