@@ -1,0 +1,21 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+  name: apiserver
+  namespace: default
+  labels:
+    app: apiserver
+spec:
+  rules:
+  - host: api.srueg.ch
+    http:
+      paths:
+      - backend:
+          serviceName: kubernetes
+          servicePort: https
+        path: /
+  tls:
+  - hosts:
+    - api.srueg.ch
