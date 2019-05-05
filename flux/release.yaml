@@ -1,0 +1,20 @@
+---
+apiVersion: flux.weave.works/v1beta1
+kind: HelmRelease
+metadata:
+  name: flux
+  namespace: flux
+spec:
+  releaseName: flux
+  chart:
+    repository: https://weaveworks.github.io/flux
+    name: flux
+    version: 0.9.2
+  values:
+    git:
+      url: git@github.com:srueg/gitops-redkeep.git
+    helmOperator:
+      create: true
+      tillerNamespace: tiller
+      configureRepositories:
+        enable: true
