@@ -1,0 +1,34 @@
+---
+apiVersion: flux.weave.works/v1beta1
+kind: HelmRelease
+metadata:
+  name: grafana
+  namespace: loki
+spec:
+  releaseName: grafana
+  chart:
+    repository: https://kubernetes-charts.storage.googleapis.com
+    name: grafana
+    version: 3.3.6
+values:
+  image:
+    repository: grafana/grafana
+    tag: 6.1.6
+  ingress:
+    enabled: true
+    hosts:
+      - loki.srueg.ch
+    tls:
+      - hosts:
+          - loki.srueg.ch
+    datasources:
+      datasources.yaml:
+        apiVersion: 1
+        datasources:
+          - name: Loki
+            type: loki
+            url: http://loki-stack:3100
+            access: proxy
+            isDefault: true
+    admin:
+      existingSecret: grafana-credentials
