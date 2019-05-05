@@ -15,6 +15,7 @@ spec:
       url: git@github.com:srueg/gitops-redkeep.git
     helmOperator:
       create: true
+      createCRD: false
       tillerNamespace: tiller
       configureRepositories:
         enable: true
