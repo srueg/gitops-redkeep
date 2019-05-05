@@ -1,0 +1,12 @@
+---
+apiVersion: flux.weave.works/v1beta1
+kind: HelmRelease
+metadata:
+  name: loki-stack
+  namespace: loki
+spec:
+  releaseName: loki-stack
+  chart:
+    repository: https://grafana.github.io/loki/charts
+    name: loki-stack
+    version: 0.7.2
