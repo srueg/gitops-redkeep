@@ -20,7 +20,7 @@ spec:
       - name: srueg-dockerhub
       containers:
       - name: calabouxi
-        image: docker.io/srueg/calabouxi:test
+        image: docker.io/srueg/vivanina:demo
         imagePullPolicy: Always
         env:
         - name: DJANGO_BUCKET_NAME
