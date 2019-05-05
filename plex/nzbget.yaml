@@ -6,7 +6,7 @@ metadata:
   namespace: plex
   annotations:
     flux.weave.works/automated: "true"
-    flux.weave.works/tag.chart-image: glob:v20*
+    flux.weave.works/tag.chart-image: glob:v21*
 spec:
   releaseName: nzbget
   chart:
