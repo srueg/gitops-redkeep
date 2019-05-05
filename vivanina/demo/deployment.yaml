@@ -5,6 +5,9 @@ metadata:
     app: vivanina
   name: vivanina
   namespace: vivanina-demo
+  annotations:
+    flux.weave.works/automated: "true"
+    flux.weave.works/tag.tiller: "glob:demo-*"
 spec:
   replicas: 1
   selector:
@@ -19,8 +22,8 @@ spec:
       imagePullSecrets:
       - name: srueg-dockerhub
       containers:
-      - name: calabouxi
-        image: docker.io/srueg/vivanina:demo
+      - name: django
+        image: docker.io/srueg/vivanina:demo-101
         imagePullPolicy: Always
         env:
         - name: DJANGO_BUCKET_NAME
