@@ -1,0 +1,24 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-helm-operator
+  namespace: tiller
+spec:
+  podSelector:
+    matchLabels:
+      app: helm
+      name: tiller
+  policyTypes:
+  - Ingress
+  ingress:
+  - from:
+    - namespaceSelector:
+        matchLabels:
+          project: flux
+      podSelector:
+        matchLabels:
+          app: flux-helm-operator
+    ports:
+    - protocol: TCP
+      port: 44134
