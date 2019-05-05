@@ -33,5 +33,5 @@ spec:
             url: http://loki-stack:3100
             access: proxy
             isDefault: true
-      admin:
-        existingSecret: grafana-credentials
+    admin:
+      existingSecret: grafana-credentials
