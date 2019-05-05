@@ -1,3 +1,4 @@
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -23,7 +24,7 @@ spec:
       - name: srueg-dockerhub
       containers:
       - name: django
-        image: docker.io/srueg/vivanina:demo-101
+        image: docker.io/srueg/vivanina:demo-103
         imagePullPolicy: Always
         env:
         - name: DJANGO_BUCKET_NAME
@@ -43,8 +44,8 @@ spec:
               name: vivanina
               key: DJANGO_SECRET_KEY
         ports:
-          - name: http
-            containerPort: 8000
+        - name: http
+          containerPort: 8000
         livenessProbe:
           initialDelaySeconds: 60
           httpGet:
