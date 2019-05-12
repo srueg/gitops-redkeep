@@ -8,8 +8,7 @@ metadata:
   name: tiller-deploy
   namespace: tiller
   annotations:
-    flux.weave.works/automated: "true"
-    flux.weave.works/tag.tiller: "glob:v2.*.*"
+    flux.weave.works/automated: "false"
 spec:
   replicas: 1
   selector:
@@ -24,7 +23,7 @@ spec:
     spec:
       containers:
       - name: tiller
-        image: gcr.io/kubernetes-helm/tiller:v2.14.0-rc.2
+        image: gcr.io/kubernetes-helm/tiller:v2.13.1
         imagePullPolicy: IfNotPresent
         command:
         - /tiller
