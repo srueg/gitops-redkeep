@@ -16,7 +16,7 @@ spec:
   values:
     image:
       repository: quay.io/jetstack/cert-manager-controller
-      tag: v0.8.0-beta.0
+      tag: v0.8.0
     securityContext:
       enabled: true
     ingressShim:
