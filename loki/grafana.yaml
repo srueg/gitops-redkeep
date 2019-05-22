@@ -16,22 +16,22 @@ spec:
   values:
     image:
       repository: grafana/grafana
-      tag: 6.1.6
+      tag: 6.2.0
     ingress:
       enabled: true
       hosts:
-        - loki.srueg.ch
+      - loki.srueg.ch
       tls:
-        - hosts:
-            - loki.srueg.ch
+      - hosts:
+        - loki.srueg.ch
     datasources:
       datasources.yaml:
         apiVersion: 1
         datasources:
-          - name: Loki
-            type: loki
-            url: http://loki:3100
-            access: proxy
-            isDefault: true
+        - name: Loki
+          type: loki
+          url: http://loki:3100
+          access: proxy
+          isDefault: true
     admin:
       existingSecret: grafana-credentials
