@@ -16,7 +16,7 @@ spec:
   values:
     image:
       repository: docker.io/linuxserver/ombi
-      tag: 3.0.4616-ls48
+      tag: 3.0.4619-ls48
     persistence:
       config:
         storageClass: zfs
