@@ -10,3 +10,4 @@ spec:
     repository: https://grafana.github.io/loki/charts
     name: loki-stack
     version: 0.11.0
+  resetValues: true
