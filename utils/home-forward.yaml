@@ -33,7 +33,7 @@ kind: Ingress
 metadata:
   annotations:
     nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
-    nginx.ingress.kubernetes.io/whitelist-source-range: "192.168.0.0/16,10.244.0.0/16"
+    nginx.ingress.kubernetes.io/whitelist-source-range: "192.168.0.0/16,10.244.0.0/16,10.8.0.0/24"
   name: home-router
   namespace: utils
   labels:
