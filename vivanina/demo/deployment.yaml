@@ -24,7 +24,7 @@ spec:
       - name: srueg-dockerhub
       containers:
       - name: django
-        image: docker.io/srueg/vivanina:build-cache
+        image: docker.io/srueg/vivanina:demo-107
         imagePullPolicy: Always
         env:
         - name: DJANGO_BUCKET_NAME
