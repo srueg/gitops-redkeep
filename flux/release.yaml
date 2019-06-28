@@ -9,7 +9,7 @@ spec:
   chart:
     repository: https://weaveworks.github.io/flux
     name: flux
-    version: 0.9.5
+    version: 0.10.2
   values:
     git:
       url: git@github.com:srueg/gitops-redkeep.git
