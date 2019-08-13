@@ -24,6 +24,7 @@ spec:
       OVPN_K8S_SVC_NETWORK: 10.96.0.0
       OVPN_K8S_SVC_SUBNET: 255.240.0.0
       dhcpOptionDomain: false
+      useCrl: true
       conf: |
         push "route 192.168.0.0 255.255.0.0"
         push "dhcp-option DNS 192.168.1.1"
