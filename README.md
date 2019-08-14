@@ -1,5 +1,5 @@
 # GitOps Config
-K8s resources to use with [weaveworks Flux](https://github.com/weaveworks/flux)
+K8s resources to use with [fluxcd Flux](https://github.com/fluxcd/flux)
 
 
 ## Bootstrap New Cluster

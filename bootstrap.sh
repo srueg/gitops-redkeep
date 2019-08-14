@@ -22,12 +22,12 @@ helm init \
   --history-max 10 \
   --wait
 
-kubectl apply -f https://raw.githubusercontent.com/weaveworks/flux/master/deploy-helm/flux-helm-release-crd.yaml
+kubectl apply -f https://raw.githubusercontent.com/fluxcd/flux/master/deploy-helm/flux-helm-release-crd.yaml
 
-helm repo add weaveworks https://weaveworks.github.io/flux
+helm repo add flux https://fluxcd.github.io/flux
 helm repo update
 
-helm install weaveworks/flux \
+helm install flux/flux \
   --name flux \
   --set helmOperator.create=true \
   --set helmOperator.createCRD=false \

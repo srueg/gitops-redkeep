@@ -7,7 +7,7 @@ metadata:
 spec:
   releaseName: flux
   chart:
-    repository: https://weaveworks.github.io/flux
+    repository: https://fluxcd.github.io/flux
     name: flux
     version: 0.10.2
   values:
