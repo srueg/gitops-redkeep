@@ -16,7 +16,7 @@ spec:
   values:
     image:
       repository: docker.io/plexinc/pms-docker
-      tag: 1.16.5.1488-deeb86e7f
+      tag: 1.16.5.1554-1e5ff713d
     plexClaimSecretName: plex-claim
     persistence:
       config:
