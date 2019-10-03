@@ -12,11 +12,8 @@ spec:
   chart:
     repository: https://kubernetes-charts.storage.googleapis.com
     name: grafana
-    version: 3.4.2
+    version: 3.8.17
   values:
-    image:
-      repository: grafana/grafana
-      tag: 6.2.3
     ingress:
       enabled: true
       hosts:
