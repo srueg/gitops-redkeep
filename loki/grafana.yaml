@@ -21,6 +21,8 @@ spec:
       tls:
       - hosts:
         - loki.srueg.ch
+    rbac:
+      pspEnabled: false
     datasources:
       datasources.yaml:
         apiVersion: 1

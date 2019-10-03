@@ -23,4 +23,4 @@ spec:
       extraArgs:
         default-ssl-certificate: ingress-controller/srueg-ch-wildcard-tls
     podSecurityPolicy:
-      enabled: true
+      enabled: false
