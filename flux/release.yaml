@@ -7,9 +7,9 @@ metadata:
 spec:
   releaseName: flux
   chart:
-    repository: https://fluxcd.github.io/flux
+    repository: https://charts.fluxcd.io
     name: flux
-    version: 0.10.2
+    version: 0.14.1
   values:
     git:
       url: git@github.com:srueg/gitops-redkeep.git
