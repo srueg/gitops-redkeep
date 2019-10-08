@@ -16,7 +16,7 @@ spec:
   values:
     image:
       repository: docker.io/linuxserver/radarr
-      tag: v0.2.0.1358-ls36
+      tag: v0.2.0.1358-ls37
     persistence:
       config:
         storageClass: zfs
