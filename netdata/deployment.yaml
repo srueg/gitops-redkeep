@@ -57,7 +57,7 @@ spec:
             path: /ping
             port: proxy
       - name: netdata
-        image: docker.io/netdata/netdata:v1.18.0
+        image: docker.io/netdata/netdata:v1.18.1
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 19999
