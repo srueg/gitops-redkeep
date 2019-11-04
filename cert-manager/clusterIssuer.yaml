@@ -8,7 +8,9 @@ spec:
     email: simon@rueggs.ch
     privateKeySecretRef:
       name: letsencrypt-production
-    http01: {}
+    solvers:
+    - http01:
+        ingress: {}
 ---
 apiVersion: cert-manager.io/v1alpha2
 kind: ClusterIssuer
@@ -20,4 +22,6 @@ spec:
     email: simon@rueggs.ch
     privateKeySecretRef:
       name: letsencrypt-staging
-    http01: {}
+    solvers:
+    - http01:
+        ingress: {}

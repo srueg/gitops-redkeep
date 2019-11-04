@@ -10,9 +10,8 @@ spec:
     server: https://acme-v02.api.letsencrypt.org/directory
     privateKeySecretRef:
       name: letsencrypt-production-account-key
-    dns01:
-      providers:
-      - name: clouddns-provider
+    solvers:
+    - dns01:
         clouddns:
           project: srueg-labor
           serviceAccountSecretRef:
