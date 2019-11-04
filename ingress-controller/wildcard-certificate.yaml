@@ -9,9 +9,6 @@ spec:
   issuerRef:
     name: letsencrypt-production
   commonName: "*.srueg.ch"
-  acme:
-    config:
-    - dns01:
-        provider: clouddns-provider
-      domains:
-        - "*.srueg.ch"
+  dnsNames:
+  - "*.srueg.ch"
+  keyAlgorithm: ecdsa
