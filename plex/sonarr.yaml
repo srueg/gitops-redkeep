@@ -16,7 +16,7 @@ spec:
   values:
     image:
       repository: docker.io/linuxserver/sonarr
-      tag: 2.0.0.5337-ls87
+      tag: 2.0.0.5337-ls88
     persistence:
       config:
         storageClass: zfs
