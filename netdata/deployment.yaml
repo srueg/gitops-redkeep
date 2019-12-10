@@ -22,7 +22,7 @@ spec:
     spec:
       containers:
       - name: oauth-proxy
-        image: quay.io/pusher/oauth2_proxy:v4.0.0
+        image: quay.io/pusher/oauth2_proxy:v4.1.0
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 4180
