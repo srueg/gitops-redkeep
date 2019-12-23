@@ -14,6 +14,7 @@ spec:
     version: 1.27.0
   values:
     controller:
+      kind: DaemonSet
       hostNetwork: true
       service:
         enabled: false
