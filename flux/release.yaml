@@ -9,7 +9,7 @@ spec:
   chart:
     repository: https://charts.fluxcd.io
     name: flux
-    version: 0.14.1
+    version: 1.0.0
   values:
     git:
       url: git@github.com:srueg/gitops-redkeep.git
