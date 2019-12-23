@@ -19,3 +19,6 @@ spec:
       tillerNamespace: tiller
       configureRepositories:
         enable: true
+    syncGarbageCollection:
+      enabled: false
+      dry: true
