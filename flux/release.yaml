@@ -12,12 +12,8 @@ spec:
   values:
     git:
       url: git@github.com:srueg/gitops-redkeep.git
-    helmOperator:
-      create: true
-      createCRD: false
-      tillerNamespace: tiller
-      configureRepositories:
-        enable: true
+    registry:
+      excludeImage: "index.docker.io/bitnami/postgresql, docker.io/netdata/netdata"
     syncGarbageCollection:
       enabled: false
       dry: true
