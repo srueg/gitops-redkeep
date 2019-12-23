@@ -6,12 +6,13 @@ metadata:
 spec:
   releaseName: localvolume-provisioner
   chart:
-    git: https://github.com/kubernetes-incubator/external-storage.git
-    ref: fbfedbf60da4e5ee25a3151bfe8504f3e3281319
-    path: local-volume/helm/provisioner/
+    git: https://github.com/kubernetes-sigs/sig-storage-local-static-provisioner.git
+    ref: v2.3.3
+    path: helm/provisioner/
   values:
     common:
       namespace: localvolume-provisioner
+      podSecurityPolicy: true
     classes:
       - name: zfs
         hostDir: /tank
