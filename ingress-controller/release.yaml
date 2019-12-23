@@ -14,10 +14,9 @@ spec:
     version: 1.27.0
   values:
     controller:
-      image:
-        repository: quay.io/kubernetes-ingress-controller/nginx-ingress-controller
-        tag: 0.24.1
       hostNetwork: true
+      service:
+        enabled: false
       dnsPolicy: ClusterFirstWithHostNet
       extraArgs:
         default-ssl-certificate: ingress-controller/srueg-ch-wildcard-tls
