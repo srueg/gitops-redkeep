@@ -9,7 +9,7 @@ spec:
   chart:
     repository: https://charts.jetstack.io
     name: cert-manager
-    version: v0.11.0
+    version: v0.12.0
   values:
     securityContext:
       enabled: true
