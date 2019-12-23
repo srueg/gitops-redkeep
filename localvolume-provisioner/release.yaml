@@ -16,9 +16,9 @@ spec:
     classes:
       - name: zfs
         hostDir: /tank
-        storageClass: true
-        reclaimPolicy: Retain
+        storageClass:
+          reclaimPolicy: Retain
       - name: ssd
         hostDir: /mnt/ssd
-        storageClass: true
-        reclaimPolicy: Retain
+        storageClass:
+          reclaimPolicy: Retain
