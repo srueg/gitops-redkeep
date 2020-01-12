@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: timemachine
+  namespace: timemachine
+  labels:
+    app.kubernetes.io/name: timemachine
+spec:
+  ports:
+  - name: netatalk
+    port: 548
+    targetPort: netatalk
+  selector:
+    app.kubernetes.io/name: timemachine

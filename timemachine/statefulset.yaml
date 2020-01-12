@@ -1,0 +1,56 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: timemachine
+  namespace: timemachine
+  labels:
+    app.kubernetes.io/name: timemachine
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: timemachine
+  replicas: 0
+  serviceName: timemachine
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: timemachine
+    spec:
+      hostname: timemachine
+      containers:
+      - name: timemachine
+        image: docker.io/odarriba/timemachine:latest@sha256:6065ca1ecf07fe6fd63c1aa2b6a861519743155bad7efc2a9545e4108bf90d9f
+        env:
+        - name: AFP_LOGIN
+          value: time
+        - name: AFP_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: timemachine
+              key: password
+        - name: AFP_NAME
+          value: TimeMachine
+        - name: PUID
+          value: "1010"
+        - name: PGID
+          value: "1010"
+        ports:
+        - name: netatalk
+          containerPort: 548
+          hostPort: 548
+        volumeMounts:
+        - name: data
+          mountPath: /timemachine
+  volumeClaimTemplates:
+  - metadata:
+      name: data
+    spec:
+      accessModes:
+      - ReadWriteOnce
+      storageClassName: zfs
+      resources:
+        requests:
+          storage: 1Ti
+      selector:
+        matchLabels:
+          usage: timemachine
