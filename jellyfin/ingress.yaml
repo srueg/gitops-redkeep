@@ -1,0 +1,19 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: jellyfin
+  namespace: plex
+  labels:
+    app.kubernetes.io/name: jellyfin
+spec:
+  rules:
+  - host: jellyfin.srueg.ch
+    http:
+      paths:
+      - backend:
+          serviceName: jellyfin
+          servicePort: http
+        path: /
+  tls:
+  - hosts:
+    - jellyfin.srueg.ch
