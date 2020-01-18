@@ -8,12 +8,12 @@ spec:
   chart:
     repository: https://charts.fluxcd.io
     name: flux
-    version: 1.0.0
+    version: 1.1.0
   values:
     git:
       url: git@github.com:srueg/gitops-redkeep.git
     registry:
       excludeImage: "index.docker.io/bitnami/postgresql, docker.io/netdata/netdata"
     syncGarbageCollection:
-      enabled: false
-      dry: true
+      enabled: true
+      dry: false
