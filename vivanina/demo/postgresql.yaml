@@ -8,7 +8,7 @@ spec:
   chart:
     repository: https://kubernetes-charts.storage.googleapis.com/
     name: postgresql
-    version: 8.1.1
+    version: 8.1.4
   values:
     postgresqlDatabase: vivanina-demo
     existingSecret: vivanina
