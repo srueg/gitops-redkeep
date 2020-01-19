@@ -12,6 +12,7 @@ do
       --controller-name sealed-secrets \
       --format yaml \
       --re-encrypt \
+      --cert sealed-secrets.pub \
       < "${secret}" \
       > "${secret}.tmp"
     mv -v "${secret}.tmp" "${secret}"
