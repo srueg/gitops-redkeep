@@ -1,18 +1,24 @@
 #!/usr/bin/env bash
 
-set -o errexit
-set -o pipefail
-set -o nounset
+set -euf -o pipefail
 set -o xtrace
 
-for secret in $(grep -lR --include \*.yaml SealedSecret .)
+cd "$(dirname "$0")"
+
+name="sealed-secrets"
+
+kubeseal --controller-namespace=sealed-secrets \
+  --controller-name="${name}" \
+  --fetch-cert \
+  > sealed-secrets.pub
+
+grep -lR --include \*.yaml SealedSecret . | while read -r secret
 do
     kubeseal \
-      --controller-namespace sealed-secrets \
-      --controller-name sealed-secrets \
+      --controller-namespace "${name}" \
+      --controller-name "${name}" \
       --format yaml \
       --re-encrypt \
-      --cert sealed-secrets.pub \
       < "${secret}" \
       > "${secret}.tmp"
     mv -v "${secret}.tmp" "${secret}"
