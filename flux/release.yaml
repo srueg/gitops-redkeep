@@ -14,6 +14,8 @@ spec:
       url: git@github.com:srueg/gitops-redkeep.git
     registry:
       excludeImage: "index.docker.io/bitnami/postgresql, docker.io/netdata/netdata"
+    sync:
+      state: secret
     syncGarbageCollection:
       enabled: true
       dry: false

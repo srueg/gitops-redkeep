@@ -9,9 +9,6 @@ spec:
     name: helm-operator
     version: 0.3.0
   values:
-    git:
-      ssh:
-        secretName: flux-git-deploy
     rbac:
       pspEnabled: true
     createCRD: false
