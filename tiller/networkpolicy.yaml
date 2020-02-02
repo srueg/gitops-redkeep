@@ -18,7 +18,7 @@ spec:
           project: flux
       podSelector:
         matchLabels:
-          app: flux-helm-operator
+          app: helm-operator
     ports:
     - protocol: TCP
       port: 44134
