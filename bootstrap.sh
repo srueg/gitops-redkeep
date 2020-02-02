@@ -22,20 +22,21 @@ helm init \
   --history-max 10 \
   --wait
 
-kubectl apply -f https://raw.githubusercontent.com/fluxcd/flux/master/deploy-helm/flux-helm-release-crd.yaml
-
-helm repo add flux https://fluxcd.github.io/flux
+helm repo add fluxcd https://charts.fluxcd.io
 helm repo update
 
-helm install flux/flux \
-  --name flux \
-  --set helmOperator.create=true \
-  --set helmOperator.createCRD=false \
-  --set helmOperator.tillerNamespace=$TILLER_NAMESPACE \
-  --set git.url=$GIT_REPO \
+helm upgrade -i flux fluxcd/flux \
   --namespace $FLUX_FORWARD_NAMESPACE \
+  --set git.url=$GIT_REPO \
+  --set git.readonly=true \
+  --set sync.state=secret \
   --wait
 
 if hash fluxctl 2>/dev/null; then
     fluxctl identity
 fi
+
+helm upgrade -i flux-helm-operator fluxcd/helm-operator \
+  --version 0.3.0 \
+  --namespace $FLUX_FORWARD_NAMESPACE \
+  --set tillerNamespace=$TILLER_NAMESPACE
