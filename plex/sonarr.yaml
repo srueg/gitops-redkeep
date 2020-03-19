@@ -11,7 +11,7 @@ spec:
   releaseName: sonarr
   chart:
     git: https://github.com/srueg/helm-charts.git
-    ref: nzb-completed
+    ref: master
     path: sonarr
   values:
     image:

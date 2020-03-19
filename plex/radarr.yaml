@@ -11,7 +11,7 @@ spec:
   releaseName: radarr
   chart:
     git: https://github.com/srueg/helm-charts.git
-    ref: nzb-completed
+    ref: master
     path: radarr
   values:
     image:
