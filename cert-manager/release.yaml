@@ -16,7 +16,7 @@ spec:
       defaultIssuerName: letsencrypt-production
       defaultIssuerKind: ClusterIssuer
     extraArgs:
-    - --dns01-self-check-nameservers="1.1.1.1:53"
+    - --dns01-recursive-nameservers="1.1.1.1:53,8.8.8.8:53"
     podDnsPolicy: "None"
     podDnsConfig:
       nameservers:
