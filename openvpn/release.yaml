@@ -9,7 +9,7 @@ spec:
   chart:
     repository: https://kubernetes-charts.storage.googleapis.com
     name: openvpn
-    version: 4.0.0
+    version: 4.2.0
   values:
     image:
       repository: quay.io/srueg/openvpn
