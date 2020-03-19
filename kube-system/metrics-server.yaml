@@ -8,4 +8,4 @@ spec:
   chart:
     repository: https://kubernetes-charts.storage.googleapis.com/
     name: metrics-server
-    version: 2.9.0
+    version: 2.10.0
