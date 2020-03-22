@@ -20,9 +20,9 @@ spec:
     persistence:
       config:
         storageClass: zfs
-      selector:
-        matchLabels:
-          usage: ombi-config
+        selector:
+          matchLabels:
+            usage: ombi-config
     ingress:
       enabled: true
       host: requests.srueg.ch
