@@ -7,7 +7,7 @@ spec:
   releaseName: localvolume-provisioner
   chart:
     git: https://github.com/kubernetes-sigs/sig-storage-local-static-provisioner.git
-    ref: v2.3.3
+    ref: v2.3.4
     path: helm/provisioner/
   values:
     common:
