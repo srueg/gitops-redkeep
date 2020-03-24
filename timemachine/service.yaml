@@ -6,7 +6,6 @@ metadata:
   labels:
     app.kubernetes.io/name: timemachine
 spec:
-  type: LoadBalancer
   ports:
   - name: netatalk
     port: 548
