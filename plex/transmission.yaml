@@ -1,0 +1,27 @@
+apiVersion: helm.fluxcd.io/v1
+kind: HelmRelease
+metadata:
+  name: transmission
+  namespace: plex
+  annotations:
+    flux.weave.works/automated: "true"
+    flux.weave.works/tag.chart-image: glob:2.*
+spec:
+  releaseName: transmission
+  chart:
+    git: https://github.com/srueg/helm-charts.git
+    ref: master
+    path: transmission
+  values:
+    image:
+      repository: docker.io/linuxserver/transmission
+      tag: 2.94-r2-ls46
+    persistence:
+      config:
+        storageClass: zfs
+        selector:
+          matchLabels:
+            usage: transmission-config
+    ingress:
+      enabled: true
+      host: transmission.srueg.ch
