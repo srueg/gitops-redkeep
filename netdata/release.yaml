@@ -17,16 +17,14 @@ spec:
       repository: docker.io/netdata/netdata
       tag: v1.20.0
 
-    alarms:
-      persistence: false
-    database:
-      storageclass: ssd
-
     master:
       env:
         DO_NOT_TRACK: "1"
       database:
         volumesize: 1951Mi
+        storageclass: ssd
+      alarms:
+        persistence: false
 
     slave:
       env:
