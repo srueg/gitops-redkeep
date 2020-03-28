@@ -38,7 +38,7 @@ spec:
         nginx.ingress.kubernetes.io/auth-signin: "https://$host/oauth2/start?rd=$escaped_request_uri"
       path: /
       hosts:
-      - netdata.srueg.ch
+      - stats.srueg.ch
       tls:
       - hosts:
-        - netdata.srueg.ch
+        - stats.srueg.ch

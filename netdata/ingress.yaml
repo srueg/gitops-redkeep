@@ -7,7 +7,7 @@ metadata:
     app: oauth-proxy
 spec:
   rules:
-  - host: netdata.srueg.ch
+  - host: stats.srueg.ch
     http:
       paths:
       - backend:
@@ -16,4 +16,4 @@ spec:
         path: /oauth2
   tls:
   - hosts:
-    - netdata.srueg.ch
+    - stats.srueg.ch
