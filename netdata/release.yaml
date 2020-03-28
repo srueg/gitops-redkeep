@@ -11,6 +11,7 @@ spec:
   chart:
     git: https://github.com/netdata/helmchart.git
     ref: 441d2e1983604fcba6f9b51fec031da73085b2a3
+    path: /
   values:
     image:
       repository: docker.io/netdata/netdata
