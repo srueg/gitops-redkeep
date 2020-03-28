@@ -1,0 +1,44 @@
+apiVersion: helm.fluxcd.io/v1
+kind: HelmRelease
+metadata:
+  name: netdata
+  namespace: netdata
+  annotations:
+    flux.weave.works/automated: "true"
+    flux.weave.works/tag.chart-image: glob:v1.*
+spec:
+  releaseName: netdata
+  chart:
+    git: https://github.com/netdata/helmchart.git
+    ref: 441d2e1983604fcba6f9b51fec031da73085b2a3
+  values:
+    image:
+      repository: docker.io/netdata/netdata
+      tag: v1.20.0
+
+    alarms:
+      persistence: false
+    database:
+      storageclass: ssd
+
+    master:
+      env:
+        DO_NOT_TRACK: "1"
+      database:
+        volumesize: 1951Mi
+
+    slave:
+      env:
+        DO_NOT_TRACK: "1"
+
+    ingress:
+      enabled: true
+      annotations:
+        nginx.ingress.kubernetes.io/auth-url: "https://$host/oauth2/auth"
+        nginx.ingress.kubernetes.io/auth-signin: "https://$host/oauth2/start?rd=$escaped_request_uri"
+      path: /
+      hosts:
+      - netdata.srueg.ch
+      tls:
+      - hosts:
+        - netdata.srueg.ch

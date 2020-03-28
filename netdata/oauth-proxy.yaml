@@ -1,0 +1,56 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: oauth-proxy
+  namespace: netdata
+  labels:
+    app: oauth-proxy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: oauth-proxy
+  template:
+    metadata:
+      labels:
+        app: oauth-proxy
+    spec:
+      containers:
+      - name: oauth-proxy
+        image: quay.io/pusher/oauth2_proxy:v5.0.0
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 4180
+          name: proxy
+        args:
+        - --http-address=:4180
+        - --https-address=
+        - --provider=github
+        - --email-domain=*
+        - --github-org=srueg-labs
+        - --upstream=file:///dev/null
+        env:
+        - name: OAUTH2_PROXY_CLIENT_ID
+          value: c258ac8036bf167fd5d5
+        - name: OAUTH2_PROXY_COOKIE_SAMESITE
+          value: lax
+        - name: OAUTH2_PROXY_CLIENT_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: oauth-config
+              key: client-secret
+        - name: OAUTH2_PROXY_COOKIE_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: oauth-config
+              key: cookie-secret
+        livenessProbe:
+          initialDelaySeconds: 30
+          httpGet:
+            path: /ping
+            port: proxy
+        readinessProbe:
+          httpGet:
+            path: /ping
+            port: proxy
