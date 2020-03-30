@@ -1,3 +1,4 @@
+---
 apiVersion: helm.fluxcd.io/v1
 kind: HelmRelease
 metadata:
@@ -15,7 +16,7 @@ spec:
   values:
     image:
       repository: docker.io/linuxserver/transmission
-      tag: 2.94-r2-ls46
+      tag: 2.94-r3-ls47
     persistence:
       config:
         storageClass: zfs
