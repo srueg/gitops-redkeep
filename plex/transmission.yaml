@@ -16,7 +16,7 @@ spec:
   values:
     image:
       repository: docker.io/linuxserver/transmission
-      tag: 2.94-r3-ls47
+      tag: 2.94-r3-ls48
     persistence:
       config:
         storageClass: zfs
