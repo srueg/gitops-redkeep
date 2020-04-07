@@ -18,28 +18,20 @@ spec:
     spec:
       containers:
       - name: timemachine
-        image: docker.io/odarriba/timemachine:latest@sha256:6065ca1ecf07fe6fd63c1aa2b6a861519743155bad7efc2a9545e4108bf90d9f
+        image: docker.io/mbentley/timemachine:smb
         env:
-        - name: AFP_LOGIN
-          value: time
-        - name: AFP_PASSWORD
+        - name: PASSWORD
           valueFrom:
             secretKeyRef:
               name: timemachine
               key: password
-        - name: AFP_NAME
-          value: TimeMachine
-        - name: PUID
-          value: "1010"
-        - name: PGID
-          value: "1010"
         ports:
-        - name: netatalk
-          containerPort: 548
-          hostPort: 548
+        - name: smb
+          containerPort: 445
+          hostPort: 445
         volumeMounts:
         - name: data
-          mountPath: /timemachine
+          mountPath: /opt/timemachine
   volumeClaimTemplates:
   - metadata:
       name: data
