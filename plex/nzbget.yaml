@@ -16,7 +16,7 @@ spec:
   values:
     image:
       repository: docker.io/linuxserver/nzbget
-      tag: v21.0-ls47
+      tag: v21.0-ls48
     persistence:
       config:
         storageClass: zfs
