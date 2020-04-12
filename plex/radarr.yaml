@@ -7,6 +7,7 @@ metadata:
   annotations:
     flux.weave.works/automated: "true"
     flux.weave.works/tag.chart-image: glob:v0.*
+    flux.weave.works/tag.chart-gatekeeper: glob:9.*
 spec:
   releaseName: radarr
   chart:
@@ -17,6 +18,9 @@ spec:
     image:
       repository: docker.io/linuxserver/radarr
       tag: v0.2.0.1480-ls58
+    gatekeeper:
+      repository: quay.io/keycloak/keycloak-gatekeeper
+      tag: 9.0.0
     persistence:
       config:
         storageClass: zfs
