@@ -16,7 +16,7 @@ spec:
   values:
     image:
       repository: docker.io/linuxserver/tautulli
-      tag: v2.2.1-ls3
+      tag: v2.2.1-ls4
     persistence:
       config:
         storageClass: zfs
