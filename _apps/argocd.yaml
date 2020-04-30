@@ -19,7 +19,7 @@ spec:
           enabled: false
         server:
           config:
-            url: argocd.srueg.ch
+            url: https://argocd.srueg.ch
             admin.enabled: "false"
             oidc.config: |
               name: Keycloak
