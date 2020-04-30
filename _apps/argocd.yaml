@@ -1,0 +1,33 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: argocd
+  namespace: argocd
+spec:
+  destination:
+    namespace: argocd
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    repoURL: https://argoproj.github.io/argo-helm
+    targetRevision: 2.2.11
+    chart: argocd
+    helm:
+      values: |
+        installCRDs: false
+        dex:
+          enabled: false
+        server:
+          config:
+            url: argocd.srueg.ch
+            oidc.config: |
+              name: Keycloak
+              issuer: https://sso.srueg.ch/auth/realms/lab
+              clientID: argocd
+              clientSecret: $oidc.keycloak.clientSecret
+          ingress:
+            enabled: true
+            hosts: [argocd.srueg.ch]
+            tls:
+            - hosts:
+              - argocd.srueg.ch
