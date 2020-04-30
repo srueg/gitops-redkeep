@@ -18,6 +18,8 @@ spec:
         dex:
           enabled: false
         server:
+          extraArgs:
+          - --insecure
           config:
             url: https://argocd.srueg.ch
             admin.enabled: "false"
