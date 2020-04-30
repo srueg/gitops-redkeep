@@ -28,7 +28,6 @@ spec:
               clientSecret: $oidc.keycloak.clientSecret
           rbacConfig:
             policy.default: role:readonly
-            scopes: '[cognito:groups, email]'
             policy.csv: |
               g, argocd:admin, role:admin
           ingress:
