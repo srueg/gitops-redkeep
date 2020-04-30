@@ -20,11 +20,17 @@ spec:
         server:
           config:
             url: argocd.srueg.ch
+            admin.enabled: "false"
             oidc.config: |
               name: Keycloak
               issuer: https://sso.srueg.ch/auth/realms/lab
               clientID: argocd
               clientSecret: $oidc.keycloak.clientSecret
+          rbacConfig:
+            policy.default: role:readonly
+            scopes: '[cognito:groups, email]'
+            policy.csv: |
+              g, argocd:admin, role:admin
           ingress:
             enabled: true
             hosts: [argocd.srueg.ch]
