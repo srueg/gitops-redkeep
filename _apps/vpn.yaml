@@ -1,0 +1,14 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: vpn
+  namespace: argocd
+spec:
+  destination:
+    namespace: openvpn
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: openvpn
+    repoURL: https://github.com/srueg/gitops-redkeep.git
+    targetRevision: master

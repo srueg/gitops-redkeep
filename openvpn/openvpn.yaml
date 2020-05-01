@@ -1,0 +1,43 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: openvpn
+  namespace: argocd
+spec:
+  destination:
+    namespace: openvpn
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    repoURL: https://kubernetes-charts.storage.googleapis.com
+    chart: openvpn
+    targetRevision: 4.*
+    helm:
+      values: |
+        image:
+          repository: quay.io/srueg/openvpn
+          tag: latest
+          pullPolicy: Always
+        openvpn:
+          OVPN_NETWORK: 192.168.99.0
+          OVPN_SUBNET: 255.255.255.0
+          OVPN_PROTO: udp
+          OVPN_K8S_POD_NETWORK: 10.244.0.0
+          OVPN_K8S_POD_SUBNET: 255.255.0.0
+          OVPN_K8S_SVC_NETWORK: 10.96.0.0
+          OVPN_K8S_SVC_SUBNET: 255.240.0.0
+          dhcpOptionDomain: false
+          useCrl: true
+          serverConf: |
+            push "route 192.168.0.0 255.255.0.0"
+            push "dhcp-option DNS 192.168.1.1"
+            max-clients 32
+            client-to-client
+        service:
+          type: NodePort
+          internalPort: 1194
+          externalPort: 1194
+          nodePort: 31194
+        persistence:
+          enabled: true
+          existingClaim: openvpn-config
