@@ -9,7 +9,7 @@ spec:
     server: https://kubernetes.default.svc
   project: default
   source:
-    path: _apps
+    path: '{_apps,cert-manager}'
     repoURL: https://github.com/srueg/gitops-redkeep.git
     targetRevision: master
   syncPolicy:
