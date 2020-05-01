@@ -25,7 +25,7 @@ spec:
           - --insecure
           config:
             url: https://argocd.srueg.ch
-            admin.enabled: false
+            admin.enabled: 'false'
             oidc.config: |
               name: Keycloak
               issuer: https://sso.srueg.ch/auth/realms/lab
