@@ -1,0 +1,33 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: localvolume-provisioner
+  namespace: argocd
+spec:
+  destination:
+    namespace: localvolume-provisioner
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    repoURL: https://github.com/kubernetes-sigs/sig-storage-local-static-provisioner.git
+    path: helm/provisioner/
+    targetRevision: v2.3.4
+    helm:
+      values: |
+        common:
+          namespace: localvolume-provisioner
+          podSecurityPolicy: true
+        classes:
+          - name: zfs
+            hostDir: /tank
+            storageClass:
+              reclaimPolicy: Retain
+          - name: ssd
+            hostDir: /mnt/ssd
+            storageClass:
+              reclaimPolicy: Retain
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: localvolume-provisioner
