@@ -17,12 +17,15 @@ spec:
         installCRDs: true
         dex:
           enabled: false
+        configs:
+          secret:
+            createSecret: false
         server:
           extraArgs:
           - --insecure
           config:
             url: https://argocd.srueg.ch
-            admin.enabled: "false"
+            admin.enabled: false
             oidc.config: |
               name: Keycloak
               issuer: https://sso.srueg.ch/auth/realms/lab
@@ -47,7 +50,8 @@ metadata:
   namespace: argocd
 spec:
   encryptedData:
-    oidc.keycloak.clientSecret: AgBnlvawIl2hKvu0B73bUgp6ZG4/CN0QBG0k6esmhcWECZIoeM41G6uqcSnUAV73Q3Jw98czt7EWq4hkAgupIy4GgAxPA+FR5JB++LHAMuHhdJVjk+X/mNOPsP6SwoxN6isqH3FuHbEmNkAJIa9cwcb+6GLjAEc0f90oZdSz8Ca/DAiNp6SuKGIcbaTGrxsssYaIB32W/dbVRRWQEN8Hd3PhE8Fpx1oo/HojuAkUKMylINri51qjM4F2jg10Jzrufz6wySMQoqzt+wclzjKv3xAV2S4R9SsTBYpM1kV4kJs8mz10YPVtw5MLX4ASuc++8EeVlLfYRaZj5IuLDvcyJzHqBtQqL8uXJTNUXP/UKbLu5EL4d2hdffKxWOZsKBACU3CSuq3qAorQ1DXXz2Jmoh79S8NCY4eiLnhod3GpEhGR15ipD4sNNks7/QNGV8MEkf0xiV8phJXshxbZ1EIvNet6awTWXkG7L2PHVLfnjoqKAp2roNesllM8CwX20rmHCS4VZXAxbUWRtJVzazF7an5438mJMaNo56+hff3PBPnsvfb88rYYmfgm8fGVxfRB0KSUl+Gmx4nTzishAkdd+lNP19UJlR/m318U8zu6yCAQ5RVn6g7bLyf6MFHWkbZ2NRhLQKIK+197KigukxCHNuT3LOOHquQwq2fA3q2N/A7Z3HlqIAZpXSX0b1ci+YgVsV3aZefZBCU2bI8auTCX4Uc1YwMhaWIULCzjmHzoni8kSFkyhi0=
+    oidc.keycloak.clientSecret: AgAoqiZB+39m/Yfoyb/ttq/Ln46TQHO4fG4u9lVDVRGseePvTIBYCVvRUCe2aAwIxcvn1F4RlVHaEV9L5lb8vxxHlKQ4OhTwqDp+HCEej1yNOoxo3iRMK3oRgb6oO5o8OieCzp05iHWPl3XRMdOZFQ1ZMoCWM+97ebs37sqfz5B2Wo+xpSNb01tRxZ6utJSvTTrX0QdbOzoEwm3+cYPZ7K+uU6jo4PPypFhf+99aS3NG+a8u4yzyUkeQBfdOnbPJjEjAKeCqRDmdJ1AvZU1MU58pV0go17CCqwW0vj4SlhCAcbxagctVSfCyjKj18sPbSHm4fPuJ8bDMwSLIL0g3JqPOh2lh0BLLng1sfZw2JNTjkuhpimMb54OnhbzwoGoE06LMi7gDDwLAkDW0Xgxm7EsD67y1VnmLd2Ovn0ogDv+w4ioaC8smAbPWXnVowem7rUxpZ7YNDbSl+s9T2t3+CGvEBtXVX0+WrHTynDVvbHV+Ae/2GZiW8gweQK1gHj5bv3+jQ0HINd6O3jw0Z0AZ9N2h24GNQ6sm4hFZxJcjOsssG8/pyZ2GJ2U5cOjsnh7GCV3pLXbHq+JftsDR7rDipj1KJFkqlGCGRJBMLgJqHaMCBpDcq0omYyFcmracdgN1yZKqvaKnJzD/wRpeZ4X14EWCTUAIOanchoO/QW8Z/X+2lFa0vavBhszqT4bAwjiv1fTJo4L/kizzh7RPXKN3q+EU5JvlkOsAWn0erY2y/BNRrbUo3mY=
+    server.secretkey: AgAGt5IeFXIO7cbYUrQ2d/HXpxdHfR1OSEymDQuAUu8kKV5PKr4cbh6eeXA7enekcCsnRzux0nlib3iL3TvsE1fEIaTNMuGf3zUgsHe5IBdBcWdOCDczdHVVjpK511Od1HBJUdVDbGlcYKxzSVFc/4zBd4lLh2aGeYxxpUJ/vqloASmBtKFW9f/RAUjVsUZK7IT5F8v/AbU+nc+E0sairNb0SkQ6rVSuuTtl97PV4OlZPHqbkwVKXmLn2ilSOo6ps18zmu2aoeYHjTKt8QBVgQQuXQXuCQ27+AAUriaj299emrYMb6wncdY9YpGVuCb80ZxNvc6cnYPLEzEfcSI4gA+C5ItHrHnF0tAkU6i0sIkx0GPXFkpzmwkuypN7zxWXFnT0T01ha23vqT8dulrQhAhUsb5rbdDIuWQeDw6YhKkY23goad5l3N7d/F/ctvI9VDyAZ1WqdX89zx+RUbXByu7vn9Z4pOgdforBVKnRPhfVKUiYkjqJvimzW6euqkF/Bwxd0cANTefzP72vXFlHL3PcK9ocgjN2DBtPd6KbZcsbIVsKh+lL86i+Y67v9CBwr1MxsUcsj1jzV8GR3acLZ9rIqa95ninvsVaT3w3JdEOYmaGgxCA+OSmB3IihTS8NEudbnwgC86jEaRKKZ0QQqYmBm+0EhWV0HLtifBUfzqSNibEp0p/54ZK1SUJlME/czHO/8MyAFANM6XhdgnBedGADAP5Y/m6gS7e7Ixy1QtP5CUhgZAlTMuoU2LU+Ag==
   template:
     metadata:
       creationTimestamp: null
