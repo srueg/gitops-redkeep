@@ -1,0 +1,14 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: ingress-controller-app
+  namespace: argocd
+spec:
+  destination:
+    namespace: ingress-controller
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: ingress-controller
+    repoURL: https://github.com/srueg/gitops-redkeep.git
+    targetRevision: master

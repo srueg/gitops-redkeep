@@ -1,0 +1,26 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: ingress-controller
+  namespace: argocd
+spec:
+  destination:
+    namespace: ingress-controller
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    repoURL: https://kubernetes-charts.storage.googleapis.com
+    chart: ingress-controller
+    targetRevision: 1.*
+    helm:
+      values: |
+        controller:
+          kind: DaemonSet
+          hostNetwork: true
+          service:
+            enabled: false
+          dnsPolicy: ClusterFirstWithHostNet
+          extraArgs:
+            default-ssl-certificate: ingress-controller/srueg-ch-wildcard-tls
+        podSecurityPolicy:
+          enabled: false
