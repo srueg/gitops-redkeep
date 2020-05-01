@@ -1,0 +1,16 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: utils
+  namespace: argocd
+spec:
+  destination:
+    namespace: utils
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: utils
+    repoURL: https://github.com/srueg/gitops-redkeep.git
+    targetRevision: master
+    directory:
+      recurse: true
