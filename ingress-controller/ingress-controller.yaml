@@ -10,7 +10,7 @@ spec:
   project: default
   source:
     repoURL: https://kubernetes-charts.storage.googleapis.com
-    chart: ingress-controller
+    chart: nginx-ingress
     targetRevision: 1.*
     helm:
       values: |
