@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: cert-manager-chart
+  namespace: argocd
+spec:
+  destination:
+    namespace: cert-manager
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    repoURL: https://charts.jetstack.io
+    chart: cert-manager
+    targetRevision: v0.*
+    helm:
+      values: |
+        securityContext:
+          enabled: true
+        ingressShim:
+          defaultIssuerName: letsencrypt-production
+          defaultIssuerKind: ClusterIssuer
+        extraArgs:
+        - --dns01-recursive-nameservers="1.1.1.1:53"
