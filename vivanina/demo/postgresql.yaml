@@ -1,16 +1,20 @@
----
-apiVersion: helm.fluxcd.io/v1
-kind: HelmRelease
+apiVersion: argoproj.io/v1alpha1
+kind: Application
 metadata:
-  name: postgresql
-  namespace: vivanina-demo
+  name: vivanina-postgresql
+  namespace: argocd
 spec:
-  chart:
-    repository: https://kubernetes-charts.storage.googleapis.com/
-    name: postgresql
-    version: 8.6.3
-  values:
-    postgresqlDatabase: vivanina-demo
-    existingSecret: vivanina
-    persistence:
-      existingClaim: postgresql
+  destination:
+    namespace: vivanina-demo
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    repoURL: https://charts.bitnami.com/bitnami
+    chart: postgresql
+    targetRevision: 8.*
+    helm:
+      values: |
+        postgresqlDatabase: vivanina-demo
+        existingSecret: vivanina
+        persistence:
+          existingClaim: postgresql
