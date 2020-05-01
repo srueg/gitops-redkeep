@@ -7,8 +7,11 @@ spec:
   destination:
     namespace: argocd
     server: https://kubernetes.default.svc
-  project: default
   source:
     path: _apps
     repoURL: https://github.com/srueg/gitops-redkeep.git
     targetRevision: master
+  syncPolicy:
+    automated:
+      selfHeal: true
+      prune: true

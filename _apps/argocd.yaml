@@ -7,14 +7,13 @@ spec:
   destination:
     namespace: argocd
     server: https://kubernetes.default.svc
-  project: default
   source:
     repoURL: https://argoproj.github.io/argo-helm
     targetRevision: 2.2.11
     chart: argo-cd
     helm:
       values: |
-        installCRDs: false
+        installCRDs: true
         dex:
           enabled: false
         server:
