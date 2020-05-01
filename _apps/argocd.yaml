@@ -31,7 +31,7 @@ spec:
           rbacConfig:
             policy.default: role:readonly
             policy.csv: |
-              g, argocd:admin, role:admin
+              g, admin, role:admin
           ingress:
             enabled: true
             hosts: [argocd.srueg.ch]
