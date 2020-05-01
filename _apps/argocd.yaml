@@ -10,8 +10,8 @@ spec:
   project: default
   source:
     repoURL: https://argoproj.github.io/argo-helm
-    targetRevision: 2.2.11
     chart: argo-cd
+    targetRevision: 2.2.11
     helm:
       values: |
         installCRDs: true
