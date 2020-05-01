@@ -38,3 +38,18 @@ spec:
             tls:
             - hosts:
               - argocd.srueg.ch
+---
+apiVersion: bitnami.com/v1alpha1
+kind: SealedSecret
+metadata:
+  creationTimestamp: null
+  name: argocd-secret
+  namespace: argocd
+spec:
+  encryptedData:
+    oidc.keycloak.clientSecret: AgBnlvawIl2hKvu0B73bUgp6ZG4/CN0QBG0k6esmhcWECZIoeM41G6uqcSnUAV73Q3Jw98czt7EWq4hkAgupIy4GgAxPA+FR5JB++LHAMuHhdJVjk+X/mNOPsP6SwoxN6isqH3FuHbEmNkAJIa9cwcb+6GLjAEc0f90oZdSz8Ca/DAiNp6SuKGIcbaTGrxsssYaIB32W/dbVRRWQEN8Hd3PhE8Fpx1oo/HojuAkUKMylINri51qjM4F2jg10Jzrufz6wySMQoqzt+wclzjKv3xAV2S4R9SsTBYpM1kV4kJs8mz10YPVtw5MLX4ASuc++8EeVlLfYRaZj5IuLDvcyJzHqBtQqL8uXJTNUXP/UKbLu5EL4d2hdffKxWOZsKBACU3CSuq3qAorQ1DXXz2Jmoh79S8NCY4eiLnhod3GpEhGR15ipD4sNNks7/QNGV8MEkf0xiV8phJXshxbZ1EIvNet6awTWXkG7L2PHVLfnjoqKAp2roNesllM8CwX20rmHCS4VZXAxbUWRtJVzazF7an5438mJMaNo56+hff3PBPnsvfb88rYYmfgm8fGVxfRB0KSUl+Gmx4nTzishAkdd+lNP19UJlR/m318U8zu6yCAQ5RVn6g7bLyf6MFHWkbZ2NRhLQKIK+197KigukxCHNuT3LOOHquQwq2fA3q2N/A7Z3HlqIAZpXSX0b1ci+YgVsV3aZefZBCU2bI8auTCX4Uc1YwMhaWIULCzjmHzoni8kSFkyhi0=
+  template:
+    metadata:
+      creationTimestamp: null
+      name: argocd-secret
+      namespace: argocd
