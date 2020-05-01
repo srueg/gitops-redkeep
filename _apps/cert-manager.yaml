@@ -1,18 +1,14 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: apps
+  name: cert-manager-app
   namespace: argocd
 spec:
   destination:
-    namespace: argocd
+    namespace: cert-manager
     server: https://kubernetes.default.svc
   project: default
   source:
-    path: _apps
+    path: cert-manager
     repoURL: https://github.com/srueg/gitops-redkeep.git
     targetRevision: master
-  syncPolicy:
-    automated:
-      selfHeal: true
-      prune: true
