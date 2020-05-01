@@ -41,6 +41,10 @@ spec:
             tls:
             - hosts:
               - argocd.srueg.ch
+        controller:
+          extraArgs:
+          - --app-resync
+          - '10'
 ---
 apiVersion: bitnami.com/v1alpha1
 kind: SealedSecret
