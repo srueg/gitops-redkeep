@@ -1,0 +1,38 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: netdata
+  namespace: argocd
+spec:
+  destination:
+    namespace: netdata
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    repoURL: https://github.com/netdata/helmchart.git
+    path: /
+    targetRevision: master
+    helm:
+      values: |
+        master:
+          env:
+            DO_NOT_TRACK: "1"
+          database:
+            volumesize: 1951Mi
+            storageclass: ssd
+          alarms:
+            persistence: false
+        slave:
+          env:
+            DO_NOT_TRACK: "1"
+        ingress:
+          enabled: true
+          annotations:
+            nginx.ingress.kubernetes.io/auth-url: "https://$host/oauth2/auth"
+            nginx.ingress.kubernetes.io/auth-signin: "https://$host/oauth2/start?rd=$escaped_request_uri"
+          path: /
+          hosts:
+          - stats.srueg.ch
+          tls:
+          - hosts:
+            - stats.srueg.ch
