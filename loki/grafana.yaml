@@ -1,35 +1,36 @@
-apiVersion: helm.fluxcd.io/v1
-kind: HelmRelease
+apiVersion: argoproj.io/v1alpha1
+kind: Application
 metadata:
-  name: grafana
-  namespace: loki
-  annotations:
-    flux.weave.works/automated: "true"
-    flux.weave.works/tag.chart-image: semver:*
+  name: loki-grafana
+  namespace: argocd
 spec:
-  releaseName: grafana
-  chart:
-    repository: https://kubernetes-charts.storage.googleapis.com
-    name: grafana
-    version: 5.0.7
-  values:
-    ingress:
-      enabled: true
-      hosts:
-      - loki.srueg.ch
-      tls:
-      - hosts:
-        - loki.srueg.ch
-    rbac:
-      pspEnabled: false
-    datasources:
-      datasources.yaml:
-        apiVersion: 1
+  destination:
+    namespace: loki
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    repoURL: https://kubernetes-charts.storage.googleapis.com
+    chart: grafana
+    targetRevision: 5.*
+    helm:
+      values: |
+        ingress:
+          enabled: true
+          hosts:
+          - loki.srueg.ch
+          tls:
+          - hosts:
+            - loki.srueg.ch
+        rbac:
+          pspEnabled: false
         datasources:
-        - name: Loki
-          type: loki
-          url: http://loki:3100
-          access: proxy
-          isDefault: true
-    admin:
-      existingSecret: grafana-credentials
+          datasources.yaml:
+            apiVersion: 1
+            datasources:
+            - name: Loki
+              type: loki
+              url: http://loki:3100
+              access: proxy
+              isDefault: true
+        admin:
+          existingSecret: grafana-credentials
