@@ -25,6 +25,7 @@ spec:
         slave:
           env:
             DO_NOT_TRACK: "1"
+          persistUniqueID: false
         ingress:
           enabled: true
           annotations:
