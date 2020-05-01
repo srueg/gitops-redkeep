@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: vivanina-postgresql
+  name: vivanina-demo-postgresql
   namespace: argocd
 spec:
   destination:
