@@ -82,15 +82,15 @@ spec:
           ports:
             - name: transmission
               containerPort: 9091
-          # livenessProbe:
-          #   httpGet:
-          #     path: /
-          #     port: transmission
-          #   initialDelaySeconds: 60
-          # readinessProbe:
-          #   httpGet:
-          #     path: /
-          #     port: transmission
+          livenessProbe:
+            httpGet:
+              path: /transmission/web/
+              port: transmission
+            initialDelaySeconds: 60
+          readinessProbe:
+            httpGet:
+              path: /transmission/web/
+              port: transmission
       terminationGracePeriodSeconds: 60
       volumes:
         - name: plex
