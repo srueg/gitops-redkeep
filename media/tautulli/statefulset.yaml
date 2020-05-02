@@ -20,6 +20,43 @@ spec:
         app.kubernetes.io/instance: tautulli
     spec:
       containers:
+        - name: gatekeeper
+          image: "quay.io/keycloak/keycloak-gatekeeper:9.0.2"
+          imagePullPolicy: IfNotPresent
+          args:
+          - --listen=:3000
+          - --discovery-url=https://sso.srueg.ch/auth/realms/lab
+          - --client-id=tautulli
+          - --upstream-url=http://localhost:8989
+          - --resources
+          - "uri=/*|roles=tautulli:login"
+          - --enable-encrypted-token
+          - --force-encrypted-cookie
+          - --enable-logging
+          - --enable-refresh-tokens
+          env:
+          - name: PROXY_CLIENT_SECRET
+            valueFrom:
+              secretKeyRef:
+                name: tautulli-gatekeeper
+                key: client-secret
+          - name: PROXY_ENCRYPTION_KEY
+            valueFrom:
+              secretKeyRef:
+                name: tautulli-gatekeeper
+                key: encryption-key
+          ports:
+          - name: http
+            containerPort: 3000
+          livenessProbe:
+            httpGet:
+              path: /oauth/health
+              port: http
+            initialDelaySeconds: 60
+          readinessProbe:
+            httpGet:
+              path: /oauth/health
+              port: http
         - name: tautulli
           image: "docker.io/linuxserver/tautulli:v2.2.1-ls5"
           imagePullPolicy: IfNotPresent
@@ -37,12 +74,12 @@ spec:
               mountPath: /logs
               subPath: Library/Application Support/Plex Media Server/Logs
           ports:
-            - name: http
+            - name: tautulli
               containerPort: 8181
           readinessProbe:
             httpGet:
               path: /welcome
-              port: http
+              port: tautulli
       terminationGracePeriodSeconds: 60
       volumes:
         - name: config
