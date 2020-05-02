@@ -12,3 +12,7 @@ spec:
     path: media/radarr
     repoURL: https://github.com/srueg/gitops-redkeep.git
     targetRevision: master
+  syncPolicy:
+    automated:
+      selfHeal: true
+      prune: true
