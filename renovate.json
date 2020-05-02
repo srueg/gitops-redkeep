@@ -3,6 +3,15 @@
     "config:base"
   ],
   "kubernetes": {
-    "fileMatch": ["(^|/)[^/]*\\.yaml$"]
-  }
+    "fileMatch": ["(^|/)*\\.yaml$"]
+  },
+  "packageRules": [
+    {
+      "paths": [
+        "utils/**"
+      ],
+      "automerge": true,
+      "requiredStatusChecks": null
+    }
+  ]
 }
