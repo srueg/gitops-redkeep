@@ -21,7 +21,7 @@ spec:
     spec:
       containers:
         - name: gatekeeper
-          image: "quay.io/keycloak/keycloak-gatekeeper:9.0.0"
+          image: "quay.io/keycloak/keycloak-gatekeeper:9.0.3"
           imagePullPolicy: IfNotPresent
           args:
           - --listen=:3000
