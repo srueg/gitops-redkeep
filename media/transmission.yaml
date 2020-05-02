@@ -1,28 +1,14 @@
----
-apiVersion: helm.fluxcd.io/v1
-kind: HelmRelease
+apiVersion: argoproj.io/v1alpha1
+kind: Application
 metadata:
   name: transmission
-  namespace: plex
-  annotations:
-    flux.weave.works/automated: "true"
-    flux.weave.works/tag.chart-image: glob:2.*
+  namespace: argocd
 spec:
-  releaseName: transmission
-  chart:
-    git: https://github.com/srueg/helm-charts.git
-    ref: master
-    path: transmission
-  values:
-    image:
-      repository: docker.io/linuxserver/transmission
-      tag: 2.94-r3-ls51
-    persistence:
-      config:
-        storageClass: zfs
-        selector:
-          matchLabels:
-            usage: transmission-config
-    ingress:
-      enabled: true
-      host: transmission.srueg.ch
+  destination:
+    namespace: plex
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: media/transmission
+    repoURL: https://github.com/srueg/gitops-redkeep.git
+    targetRevision: master

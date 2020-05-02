@@ -1,0 +1,20 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: transmission
+  namespace: plex
+  labels:
+    app.kubernetes.io/name: transmission
+    app.kubernetes.io/instance: transmission
+spec:
+  tls:
+    - hosts:
+        - "transmission.srueg.ch"
+  rules:
+    - host: "transmission.srueg.ch"
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: transmission
+              servicePort: http
