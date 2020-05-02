@@ -1,0 +1,54 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: keycloak
+  namespace: argocd
+spec:
+  destination:
+    namespace: keycloak
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    repoURL: https://codecentric.github.io/helm-charts
+    chart: keycloak
+    targetRevision: '*'
+    helm:
+      values: |
+        keycloak:
+          extraArgs: -Dkeycloak.profile.feature.account_api=enabled -Dkeycloak.profile.feature.account2=enabled
+          ingress:
+            enabled: true
+            hosts:
+            - sso.srueg.ch
+            tls:
+            - hosts:
+              - sso.srueg.ch
+          existingSecret: keycloak
+          persistence:
+            dbVendor: postgres
+            deployPostgres: true
+        postgresql:
+          persistence:
+            enabled: true
+            size: 1Gi
+            storageClass: zfs
+          existingSecret: keycloak
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: keycloak
+---
+apiVersion: bitnami.com/v1alpha1
+kind: SealedSecret
+metadata:
+  name: keycloak
+  namespace: keycloak
+spec:
+  encryptedData:
+    password: AgBDzV2pokhfK6AEmWNB5uOMZfJrrFbm8jbs0mMnaVFDmaLeqRtKB+C2WZ18KLYRzksW3cHhtJLcqej4thLDj6TxOnVeiChMsZqC25dAh/hy1WX0Xht2+1316DgmT2YMLp28YsBDZ0lhve5iJb/OLIbaCvWFPbU0VcAIJepmhbma/AoFDQ1nG6LIs1ZjGKJFcZ4A2p1bhqDd8yvK3Sld4wCfruDaye0hscznofOwLUac5q71JNlNGBPxgEKY7ezq788WWz8GsY+zsuWRiq1jB6RvseotxfswePSUjOOe5xEdLTF0z7WzbZcP6rSZiFQ2MV9rmUD3ziwewcJHhMB1NrXq4nNLD2bkcHL28dQ3phyFWcZJEseN0/Y/HvuxapPfaWJ17T7V3SMHOk4WFTmc+o2nw6NQCECHBEu2oyiPBRZmRnJH+Q/YKEq5IXUMEC9bssx6o+L2uy5wG7F+AIZDi2luERsTs98lWZmLwmuQk9wz9tMKjCtZShrN3TF2xPfRd7wyNPCX4N80enWYLrGvv+sF5V/hNhR8ZGL/+FRwBJrdXO42pmkhhWbFu/U2stpwthYC6DBVlmj7UGSnh94njOrZMakf3LVI3Mp8CQibaaMdjraRJdAAGK6Ui6xShjofFZnliv/TgkbCtx6Vgdc5WX6fUArnUo3xBgzJmu/osK9rKFNyipYKKhin2KjzFTCMiXByyNCVPJqtXDSGZ8oMnjdoiz8gK2TESuSvXgZKuTyXHg==
+    postgresql-password: AgB2G77g3OQmhdet9HcwtPaNVnIVEKPBjwRVMZL6JEr/Pn/5xqqxdw97TC4U8PKXvg4ROH4DEPpPzk+/NYPY61BUEDzlsDpWWcRJh2l0KEuql7Ul++SgOFbg2ACPPl/LcsRoX2elBH74h//EgBO+EPRw9ns2sKTM8Kyl1jpoXyLmPjKiI4DGsg+TvClZrU4cjxIiOPG5AX8bYeJO1GyOH/LA9ZXRdxlYEeCDWDYcr7pJtqq67I66I9eEa6vYpg/UIa8ZpS96uQ3djSUJKFBpRK0Fq4N+eElglfNmWt2B+iEcgkvd88XimZkMyq0jt2CxvCOoMZ7Tf7TZgd6yc00xNdWtf+mD9YzwsPZx6Qc6BIOEruyo3/Lkm6Y44Ls7PLVrmDkC4lIkaSO+Fuc1QRVol63f/3rm4RAstNkqXFDBSby+dXS2E9hZDG4n0/ZV49NpQaYZKCrF8kI8qsSXHN7MDwVJ1Wjm8JXPnlA/1wWA8+tAT0haD0LF7Yqw/qaDZIFLI49PjXfLkdnviknl4oqOesvJm5XTiWtaFkEsob0hgOctyZ8PZP4rNAyw/KfnZ7mYl95AQ5Cnwx84nAMKGFeE0GhQmU7VhJshTy+CvReWUKSU802eWAxY3hXz6HuxNlIBTgx5gym37HHs+9wF4+l2xK290C9Ge0FsNsdRJsCUKVfUnVV6cy+Cy9X9h4l6GrJwsI0ZR5FLk/PoT5DttRA9ic++pQG5i0OqX1x3pWnTTHTz6Q==
+  template:
+    metadata:
+      name: keycloak
+      namespace: keycloak
