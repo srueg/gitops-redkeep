@@ -21,7 +21,7 @@ spec:
     spec:
       containers:
         - name: tautulli
-          image: "docker.io/linuxserver/tautulli:v2.2.1-ls5"
+          image: "docker.io/linuxserver/tautulli:v2.2.3-ls5"
           imagePullPolicy: IfNotPresent
           env:
             - name: PUID
