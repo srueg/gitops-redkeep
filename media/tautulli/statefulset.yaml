@@ -27,7 +27,7 @@ spec:
           - --listen=:3000
           - --discovery-url=https://sso.srueg.ch/auth/realms/lab
           - --client-id=tautulli
-          - --upstream-url=http://localhost:8989
+          - --upstream-url=http://localhost:8181
           - --resources
           - "uri=/*|roles=tautulli:login"
           - --enable-encrypted-token
