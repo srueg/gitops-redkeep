@@ -14,3 +14,7 @@ spec:
     targetRevision: master
     directory:
       recurse: true
+  syncPolicy:
+    automated:
+      selfHeal: true
+      prune: true
