@@ -27,7 +27,7 @@ spec:
           GF_AUTH_GENERIC_OAUTH_TOKEN_URL: https://sso.srueg.ch/auth/realms/lab/protocol/openid-connect/token
           GF_AUTH_GENERIC_OAUTH_API_URL: https://sso.srueg.ch/auth/realms/lab/protocol/openid-connect/userinfo
           GF_AUTH_GENERIC_OAUTH_API_URL_SCOPES: openid profile email
-          GF_AUTH_GENERIC_OAUTH_ROLE_ATTRIBUTE_PATH: "contains(resource_access.grafana.roles[*], 'Admin') && 'Admin' || 'Viewer'"
+          GF_AUTH_GENERIC_OAUTH_ROLE_ATTRIBUTE_PATH: resource_access.grafana.roles
         ingress:
           enabled: true
           hosts:
