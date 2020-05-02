@@ -20,6 +20,43 @@ spec:
         app.kubernetes.io/instance: transmission
     spec:
       containers:
+        - name: gatekeeper
+          image: "quay.io/keycloak/keycloak-gatekeeper:9.0.2"
+          imagePullPolicy: IfNotPresent
+          args:
+          - --listen=:3000
+          - --discovery-url=https://sso.srueg.ch/auth/realms/lab
+          - --client-id=transmission
+          - --upstream-url=http://localhost:9091
+          - --resources
+          - "uri=/*|roles=transmission:login"
+          - --enable-encrypted-token
+          - --force-encrypted-cookie
+          - --enable-logging
+          - --enable-refresh-tokens
+          env:
+          - name: PROXY_CLIENT_SECRET
+            valueFrom:
+              secretKeyRef:
+                name: transmission-gatekeeper
+                key: client-secret
+          - name: PROXY_ENCRYPTION_KEY
+            valueFrom:
+              secretKeyRef:
+                name: transmission-gatekeeper
+                key: encryption-key
+          ports:
+          - name: http
+            containerPort: 3000
+          livenessProbe:
+            httpGet:
+              path: /oauth/health
+              port: http
+            initialDelaySeconds: 60
+          readinessProbe:
+            httpGet:
+              path: /oauth/health
+              port: http
         - name: transmission
           image: "docker.io/linuxserver/transmission:2.94-r3-ls51"
           imagePullPolicy: IfNotPresent
@@ -32,13 +69,6 @@ spec:
               value: "Europe/Zurich"
             - name: TRANSMISSION_WEB_HOME
               value: "/combustion-release/"
-            - name: USER
-              value: "transmission"
-            - name: PASS
-              valueFrom:
-                secretKeyRef:
-                  name: "transmission"
-                  key: password
           volumeMounts:
             - mountPath: /config/
               name: config
@@ -50,17 +80,17 @@ spec:
               name: plex
               subPath: addons/transmission/
           ports:
-            - name: http
+            - name: transmission
               containerPort: 9091
           # livenessProbe:
           #   httpGet:
           #     path: /
-          #     port: http
+          #     port: transmission
           #   initialDelaySeconds: 60
           # readinessProbe:
           #   httpGet:
           #     path: /
-          #     port: http
+          #     port: transmission
       terminationGracePeriodSeconds: 60
       volumes:
         - name: plex
