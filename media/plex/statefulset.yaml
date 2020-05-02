@@ -12,6 +12,7 @@ spec:
     matchLabels:
       app.kubernetes.io/name: plex
       app.kubernetes.io/instance: plex
+  serviceName: ""
   template:
     metadata:
       labels:
