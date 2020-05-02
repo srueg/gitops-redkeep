@@ -11,7 +11,7 @@ spec:
   source:
     repoURL: https://kubernetes-charts.storage.googleapis.com
     chart: openvpn
-    targetRevision: 4.*
+    targetRevision: '*'
     helm:
       values: |
         image:

@@ -11,4 +11,4 @@ spec:
   source:
     repoURL: https://grafana.github.io/loki/charts
     chart: loki-stack
-    targetRevision: 0.*
+    targetRevision: '*'

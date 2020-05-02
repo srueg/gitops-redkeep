@@ -11,7 +11,7 @@ spec:
   source:
     repoURL: https://kubernetes-charts.storage.googleapis.com
     chart: nginx-ingress
-    targetRevision: 1.*
+    targetRevision: '*'
     helm:
       values: |
         controller:
