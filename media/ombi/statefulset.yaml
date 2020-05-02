@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: ombi
+  namespace: plex
+  labels:
+    app.kubernetes.io/name: ombi
+    app.kubernetes.io/instance: ombi
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: ombi
+      app.kubernetes.io/instance: ombi
+  serviceName: ""
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: ombi
+        app.kubernetes.io/instance: ombi
+    spec:
+      containers:
+        - name: ombi
+          image: "docker.io/linuxserver/nzbget:v21.0-ls51"
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: PUID
+              value: "10001"
+            - name: PGID
+              value: "10001"
+            - name: TZ
+              value: "Europe/Zurich"
+          volumeMounts:
+            - mountPath: /config
+              name: config
+          ports:
+            - name: http
+              containerPort: 3579
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: http
+            initialDelaySeconds: 60
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: http
+      terminationGracePeriodSeconds: 60
+      volumes:
+        - name: config
+          persistentVolumeClaim:
+            claimName: ombi-config

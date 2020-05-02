@@ -1,28 +1,14 @@
----
-apiVersion: helm.fluxcd.io/v1
-kind: HelmRelease
+apiVersion: argoproj.io/v1alpha1
+kind: Application
 metadata:
   name: ombi
-  namespace: plex
-  annotations:
-    flux.weave.works/automated: "true"
-    flux.weave.works/tag.chart-image: glob:3.0.*
+  namespace: argocd
 spec:
-  releaseName: ombi
-  chart:
-    git: https://github.com/srueg/helm-charts.git
-    ref: master
-    path: ombi
-  values:
-    image:
-      repository: docker.io/linuxserver/ombi
-      tag: 3.0.5120-ls12
-    persistence:
-      config:
-        storageClass: zfs
-        selector:
-          matchLabels:
-            usage: ombi-config
-    ingress:
-      enabled: true
-      host: requests.srueg.ch
+  destination:
+    namespace: plex
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: media/ombi
+    repoURL: https://github.com/srueg/gitops-redkeep.git
+    targetRevision: master

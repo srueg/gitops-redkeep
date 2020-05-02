@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: ombi-config
+  namespace: plex
+  labels:
+    app.kubernetes.io/name: ombi
+    app.kubernetes.io/instance: ombi
+spec:
+  storageClassName: "zfs"
+  resources:
+    requests:
+      storage: "1Gi"
+  accessModes:
+    - "ReadWriteOnce"
+  selector:
+    matchLabels:
+      usage: nzbget-config

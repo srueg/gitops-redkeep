@@ -1,0 +1,20 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: ombi
+  namespace: plex
+  labels:
+    app.kubernetes.io/name: ombi
+    app.kubernetes.io/instance: ombi
+spec:
+  tls:
+    - hosts:
+        - "nzbget.srueg.ch"
+  rules:
+    - host: "nzbget.srueg.ch"
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: ombi
+              servicePort: http
