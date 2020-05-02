@@ -1,0 +1,20 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: sonarr
+  namespace: plex
+  labels:
+    app.kubernetes.io/name: sonarr
+    app.kubernetes.io/instance: sonarr
+spec:
+  tls:
+    - hosts:
+        - "sonarr.srueg.ch"
+  rules:
+    - host: "sonarr.srueg.ch"
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: sonarr
+              servicePort: http

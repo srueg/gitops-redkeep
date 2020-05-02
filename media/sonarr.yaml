@@ -1,28 +1,14 @@
----
-apiVersion: helm.fluxcd.io/v1
-kind: HelmRelease
+apiVersion: argoproj.io/v1alpha1
+kind: Application
 metadata:
   name: sonarr
-  namespace: plex
-  annotations:
-    flux.weave.works/automated: "true"
-    flux.weave.works/tag.chart-image: glob:2.0.*
+  namespace: argocd
 spec:
-  releaseName: sonarr
-  chart:
-    git: https://github.com/srueg/helm-charts.git
-    ref: master
-    path: sonarr
-  values:
-    image:
-      repository: docker.io/linuxserver/sonarr
-      tag: 2.0.0.5344-ls63
-    persistence:
-      config:
-        storageClass: zfs
-        selector:
-          matchLabels:
-            usage: sonarr-config
-    ingress:
-      enabled: true
-      host: sonarr.srueg.ch
+  destination:
+    namespace: plex
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: media/sonarr
+    repoURL: https://github.com/srueg/gitops-redkeep.git
+    targetRevision: master

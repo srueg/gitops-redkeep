@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: sonarr
+  namespace: plex
+  labels:
+    app.kubernetes.io/name: sonarr
+    app.kubernetes.io/instance: sonarr
+spec:
+  type: ClusterIP
+  ports:
+    - name: http
+      port: 80
+      targetPort: http
+  selector:
+    app.kubernetes.io/name: sonarr
+    app.kubernetes.io/instance: sonarr

@@ -1,0 +1,100 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: sonarr
+  namespace: plex
+  labels:
+    app.kubernetes.io/name: sonarr
+    app.kubernetes.io/instance: sonarr
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: sonarr
+      app.kubernetes.io/instance: sonarr
+  serviceName: ""
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: sonarr
+        app.kubernetes.io/instance: sonarr
+    spec:
+      containers:
+        - name: gatekeeper
+          image: "quay.io/keycloak/keycloak-gatekeeper:9.0.2"
+          imagePullPolicy: IfNotPresent
+          args:
+          - --listen=:3000
+          - --discovery-url=https://sso.srueg.ch/auth/realms/lab
+          - --client-id=sonarr
+          - --upstream-url=http://localhost:8989
+          - --resources
+          - "uri=/*|roles=sonarr:login"
+          - --resources
+          - uri=/api/*|white-listed=true
+          - --enable-encrypted-token
+          - --force-encrypted-cookie
+          - --enable-logging
+          - --enable-refresh-tokens
+          env:
+          - name: PROXY_CLIENT_SECRET
+            valueFrom:
+              secretKeyRef:
+                name: sonarr-gatekeeper
+                key: client-secret
+          - name: PROXY_ENCRYPTION_KEY
+            valueFrom:
+              secretKeyRef:
+                name: sonarr-gatekeeper
+                key: encryption-key
+          ports:
+          - name: http
+            containerPort: 3000
+          livenessProbe:
+            httpGet:
+              path: /oauth/health
+              port: http
+            initialDelaySeconds: 60
+          readinessProbe:
+            httpGet:
+              path: /oauth/health
+              port: http
+        - name: sonarr
+          image: "docker.io/linuxserver/sonarr:2.0.0.5344-ls63"
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: PUID
+              value: "10001"
+            - name: PGID
+              value: "10001"
+            - name: TZ
+              value: "Europe/Zurich"
+          volumeMounts:
+            - mountPath: /config/
+              name: config
+            - mountPath: /addons/
+              name: plex
+              subPath: addons/
+            - mountPath: /tv/
+              name: plex
+              subPath: Series/
+          ports:
+            - name: sonarr
+              containerPort: 8989
+          livenessProbe:
+            httpGet:
+              path: /login
+              port: sonarr
+            initialDelaySeconds: 60
+          readinessProbe:
+            httpGet:
+              path: /login
+              port: sonarr
+      terminationGracePeriodSeconds: 60
+      volumes:
+        - name: plex
+          persistentVolumeClaim:
+            claimName: plex-data
+        - name: config
+          persistentVolumeClaim:
+            claimName: sonarr-config
