@@ -1,0 +1,53 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: tautulli
+  namespace: plex
+  labels:
+    app.kubernetes.io/name: tautulli
+    app.kubernetes.io/instance: tautulli
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: tautulli
+      app.kubernetes.io/instance: tautulli
+  serviceName: ""
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: tautulli
+        app.kubernetes.io/instance: tautulli
+    spec:
+      containers:
+        - name: tautulli
+          image: "docker.io/linuxserver/tautulli:v2.2.1-ls5"
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: PUID
+              value: "10001"
+            - name: PGID
+              value: "10001"
+            - name: TZ
+              value: "Europe/Zurich"
+          volumeMounts:
+            - name: config
+              mountPath: /config
+            - name: plex-logs
+              mountPath: /logs
+              subPath: Library/Application Support/Plex Media Server/Logs
+          ports:
+            - name: http
+              containerPort: 8181
+          readinessProbe:
+            httpGet:
+              path: /welcome
+              port: http
+      terminationGracePeriodSeconds: 60
+      volumes:
+        - name: config
+          persistentVolumeClaim:
+            claimName: tautulli-config
+        - name: plex-logs
+          persistentVolumeClaim:
+            claimName: plex-config

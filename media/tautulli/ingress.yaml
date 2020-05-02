@@ -1,0 +1,20 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: tautulli
+  namespace: plex
+  labels:
+    app.kubernetes.io/name: tautulli
+    app.kubernetes.io/instance: tautulli
+spec:
+  tls:
+    - hosts:
+        - "tautulli.srueg.ch"
+  rules:
+    - host: "tautulli.srueg.ch"
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: tautulli
+              servicePort: http
