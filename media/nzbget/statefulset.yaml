@@ -20,6 +20,43 @@ spec:
         app.kubernetes.io/instance: nzbget
     spec:
       containers:
+        - name: gatekeeper
+          image: "quay.io/keycloak/keycloak-gatekeeper:9.0.0"
+          imagePullPolicy: IfNotPresent
+          args:
+          - --listen=:3000
+          - --discovery-url=https://sso.srueg.ch/auth/realms/lab
+          - --client-id=nzbget
+          - --upstream-url=http://localhost:6789
+          - --resources
+          - "uri=/*|roles=nzbget:login"
+          - --enable-encrypted-token
+          - --force-encrypted-cookie
+          - --enable-logging
+          - --enable-refresh-tokens
+          env:
+          - name: PROXY_CLIENT_SECRET
+            valueFrom:
+              secretKeyRef:
+                name: nzbget-gatekeeper
+                key: client-secret
+          - name: PROXY_ENCRYPTION_KEY
+            valueFrom:
+              secretKeyRef:
+                name: nzbget-gatekeeper
+                key: encryption-key
+          ports:
+          - name: http
+            containerPort: 3000
+          livenessProbe:
+            httpGet:
+              path: /oauth/health
+              port: http
+            initialDelaySeconds: 60
+          readinessProbe:
+            httpGet:
+              path: /oauth/health
+              port: http
         - name: nzbget
           image: "docker.io/linuxserver/nzbget:v21.0-ls51"
           imagePullPolicy: IfNotPresent
@@ -39,17 +76,17 @@ spec:
             - mountPath: /intermediate/
               name: intermediate
           ports:
-            - name: http
+            - name: nzbget
               containerPort: 6789
           livenessProbe:
             httpGet:
               path: /
-              port: http
+              port: nzbget
             initialDelaySeconds: 60
           readinessProbe:
             httpGet:
               path: /
-              port: http
+              port: nzbget
       terminationGracePeriodSeconds: 60
       volumes:
         - name: intermediate
