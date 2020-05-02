@@ -1,0 +1,63 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: nzbget
+  namespace: plex
+  labels:
+    app.kubernetes.io/name: nzbget
+    app.kubernetes.io/instance: nzbget
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: nzbget
+      app.kubernetes.io/instance: nzbget
+  serviceName: ""
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: nzbget
+        app.kubernetes.io/instance: nzbget
+    spec:
+      containers:
+        - name: nzbget
+          image: "docker.io/linuxserver/nzbget:v21.0-ls51"
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: PUID
+              value: "10001"
+            - name: PGID
+              value: "10001"
+            - name: TZ
+              value: "Europe/Zurich"
+          volumeMounts:
+            - mountPath: /config/
+              name: config
+            - mountPath: /downloads/
+              name: downloads
+              subPath: addons/nzbget/
+            - mountPath: /intermediate/
+              name: intermediate
+          ports:
+            - name: http
+              containerPort: 6789
+          livenessProbe:
+            httpGet:
+              path: /
+              port: http
+            initialDelaySeconds: 60
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http
+      terminationGracePeriodSeconds: 60
+      volumes:
+        - name: intermediate
+          persistentVolumeClaim:
+            claimName: nzbget-downloads
+        - name: downloads
+          persistentVolumeClaim:
+            claimName: plex-data
+        - name: config
+          persistentVolumeClaim:
+            claimName: nzbget-config

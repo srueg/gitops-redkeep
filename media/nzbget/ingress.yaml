@@ -1,0 +1,20 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: nzbget
+  namespace: plex
+  labels:
+    app.kubernetes.io/name: nzbget
+    app.kubernetes.io/instance: nzbget
+spec:
+  tls:
+    - hosts:
+        - "nzbget.srueg.ch"
+  rules:
+    - host: "nzbget.srueg.ch"
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: nzbget
+              servicePort: http
