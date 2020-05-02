@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: plex-config
+  namespace: plex
+  labels:
+    app.kubernetes.io/name: plex
+    app.kubernetes.io/instance: plex
+spec:
+  storageClassName: "zfs"
+  resources:
+    requests:
+      storage: "10Gi"
+  accessModes:
+  - "ReadWriteOnce"
+  selector:
+    matchLabels:
+      usage: plex-config
