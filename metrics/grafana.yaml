@@ -17,7 +17,7 @@ spec:
         envFromSecret: grafana
         env:
           GF_AUTH_BASIC_ENABLED: false
-          GF_SERVER_ROOT_URL: https://grafana.cluster.ldbar.ch
+          GF_SERVER_ROOT_URL: https://grafana.srueg.ch
           GF_AUTH_GENERIC_OAUTH_ENABLED: true
           GF_AUTH_GENERIC_OAUTH_NAME: Keycloak
           GF_AUTH_GENERIC_OAUTH_ALLOW_SIGN_UP: true
