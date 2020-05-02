@@ -17,6 +17,7 @@ spec:
         envFromSecret: grafana
         env:
           GF_AUTH_BASIC_ENABLED: false
+          GF_AUTH_DISABLE_LOGIN_FORM: true
           GF_SERVER_ROOT_URL: https://grafana.srueg.ch
           GF_AUTH_GENERIC_OAUTH_ENABLED: true
           GF_AUTH_GENERIC_OAUTH_NAME: Keycloak
@@ -26,7 +27,7 @@ spec:
           GF_AUTH_GENERIC_OAUTH_TOKEN_URL: https://sso.srueg.ch/auth/realms/lab/protocol/openid-connect/token
           GF_AUTH_GENERIC_OAUTH_API_URL: https://sso.srueg.ch/auth/realms/lab/protocol/openid-connect/userinfo
           GF_AUTH_GENERIC_OAUTH_API_URL_SCOPES: openid profile email
-          GF_AUTH_GENERIC_OAUTH_ROLE_ATTRIBUTE_PATH: resource_access.grafana.roles
+          GF_AUTH_GENERIC_OAUTH_ROLE_ATTRIBUTE_PATH: "contains(resource_access.grafana.roles[*], 'Admin') && 'Admin' || 'Viewer'"
         ingress:
           enabled: true
           hosts:
