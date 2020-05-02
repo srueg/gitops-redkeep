@@ -15,4 +15,4 @@ spec:
     - "ReadWriteOnce"
   selector:
     matchLabels:
-      usage: nzbget-config
+      usage: ombi-config

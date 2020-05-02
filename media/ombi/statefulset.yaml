@@ -21,7 +21,7 @@ spec:
     spec:
       containers:
         - name: ombi
-          image: "docker.io/linuxserver/nzbget:v21.0-ls51"
+          image: "docker.io/linuxserver/ombi:3.0.5120-ls12"
           imagePullPolicy: IfNotPresent
           env:
             - name: PUID

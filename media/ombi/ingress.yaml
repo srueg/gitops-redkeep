@@ -9,9 +9,9 @@ metadata:
 spec:
   tls:
     - hosts:
-        - "nzbget.srueg.ch"
+        - "requests.srueg.ch"
   rules:
-    - host: "nzbget.srueg.ch"
+    - host: "requests.srueg.ch"
       http:
         paths:
           - path: /
