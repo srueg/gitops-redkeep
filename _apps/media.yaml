@@ -12,6 +12,8 @@ spec:
     path: media
     repoURL: https://github.com/srueg/gitops-redkeep.git
     targetRevision: master
+    directory:
+      recurse: false
   syncPolicy:
     automated:
       selfHeal: true
