@@ -1,32 +1,14 @@
----
-apiVersion: helm.fluxcd.io/v1
-kind: HelmRelease
+apiVersion: argoproj.io/v1alpha1
+kind: Application
 metadata:
   name: radarr
-  namespace: plex
-  annotations:
-    flux.weave.works/automated: "true"
-    flux.weave.works/tag.chart-image: glob:v0.*
-    flux.weave.works/tag.chart-gatekeeper: glob:9.*
+  namespace: argocd
 spec:
-  releaseName: radarr
-  chart:
-    git: https://github.com/srueg/helm-charts.git
-    ref: master
-    path: radarr
-  values:
-    image:
-      repository: docker.io/linuxserver/radarr
-      tag: v0.2.0.1480-ls59
-    gatekeeper:
-      repository: quay.io/keycloak/keycloak-gatekeeper
-      tag: 9.0.0
-    persistence:
-      config:
-        storageClass: zfs
-        selector:
-          matchLabels:
-            usage: radarr-config
-    ingress:
-      enabled: true
-      host: radarr.srueg.ch
+  destination:
+    namespace: plex
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: media/radarr
+    repoURL: https://github.com/srueg/gitops-redkeep.git
+    targetRevision: master

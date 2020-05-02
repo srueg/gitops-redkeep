@@ -1,0 +1,20 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: radarr
+  namespace: plex
+  labels:
+    app.kubernetes.io/name: radarr
+    app.kubernetes.io/instance: radarr
+spec:
+  tls:
+    - hosts:
+        - "radarr.srueg.ch"
+  rules:
+    - host: "radarr.srueg.ch"
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: radarr
+              servicePort: http
