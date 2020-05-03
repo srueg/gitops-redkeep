@@ -19,7 +19,6 @@ spec:
           GF_SERVER_ENABLE_GZIP: true
           GF_SECURITY_DISABLE_INITIAL_ADMIN_CREATION: true
           GF_SECURITY_COOKIE_SECURE: true
-          GF_LOG_LEVEL: debug
           GF_ALERTING_ENABLED: false
           GF_AUTH_BASIC_ENABLED: false
           GF_AUTH_DISABLE_LOGIN_FORM: true
