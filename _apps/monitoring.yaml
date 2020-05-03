@@ -1,15 +1,15 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: metrics
+  name: monitoring
   namespace: argocd
 spec:
   destination:
-    namespace: metrics
+    namespace: monitoring
     server: https://kubernetes.default.svc
   project: default
   source:
-    path: metrics
+    path: monitoring
     repoURL: https://github.com/srueg/gitops-redkeep.git
     targetRevision: master
   syncPolicy:

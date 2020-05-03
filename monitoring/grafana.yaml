@@ -1,0 +1,74 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: grafana
+  namespace: argocd
+spec:
+  destination:
+    namespace: monitoring
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    repoURL: https://kubernetes-charts.storage.googleapis.com
+    chart: grafana
+    targetRevision: '*'
+    helm:
+      values: |
+        envFromSecret: grafana
+        env:
+          GF_SERVER_ENABLE_GZIP: true
+          GF_SECURITY_DISABLE_INITIAL_ADMIN_CREATION: true
+          GF_SECURITY_COOKIE_SECURE: true
+          GF_ALERTING_ENABLED: false
+          GF_AUTH_BASIC_ENABLED: false
+          GF_AUTH_DISABLE_LOGIN_FORM: true
+          GF_SERVER_ROOT_URL: https://grafana.srueg.ch
+          GF_AUTH_GENERIC_OAUTH_ENABLED: true
+          GF_AUTH_GENERIC_OAUTH_NAME: Keycloak
+          GF_AUTH_GENERIC_OAUTH_ALLOW_SIGN_UP: true
+          GF_AUTH_GENERIC_OAUTH_CLIENT_ID: grafana
+          GF_AUTH_GENERIC_OAUTH_AUTH_URL: https://sso.srueg.ch/auth/realms/lab/protocol/openid-connect/auth
+          GF_AUTH_GENERIC_OAUTH_TOKEN_URL: https://sso.srueg.ch/auth/realms/lab/protocol/openid-connect/token
+          GF_AUTH_GENERIC_OAUTH_API_URL: https://sso.srueg.ch/auth/realms/lab/protocol/openid-connect/userinfo
+          GF_AUTH_GENERIC_OAUTH_API_URL_SCOPES: openid profile email roles
+          GF_AUTH_GENERIC_OAUTH_ROLE_ATTRIBUTE_PATH: roles[0]
+        ingress:
+          enabled: true
+          hosts:
+          - grafana.srueg.ch
+          tls:
+          - hosts:
+            - grafana.srueg.ch
+        datasources:
+          datasources.yaml:
+            apiVersion: 1
+            datasources:
+            - name: Loki
+              type: loki
+              url: http://loki-stack.loki:3100
+              access: proxy
+              isDefault: false
+        admin:
+          existingSecret: grafana
+        rbac:
+          namespaced: true
+        sidecar:
+          dashboards:
+            enabled: true
+            label: grafana_dashboard
+---
+apiVersion: bitnami.com/v1alpha1
+kind: SealedSecret
+metadata:
+  name: grafana
+  namespace: monitoring
+spec:
+  encryptedData:
+    GF_AUTH_GENERIC_OAUTH_CLIENT_SECRET: AgAF8P+PQs0p6dbKP76Mbu+9xjexJwZBtTpi93/qX5m/oxD3zBGKKSKA13GDugHkhqCM8rUWZoeUQE/t29CgjrUpVOSWpO5qfxLX1c9jW5sq77jR7Pnx37gom4KKldSKpUP5hjDSm0aqDHREGfc37ugWddVzYJxsI5ogm+gPsAPC0+Y7gFR81U7RySYko9sINvXCMHIQNUNC32J+HnARLXIfqcwySJ4DFxjYLCUr+HPb81hMwPIORUVHauIBXmsHRPAk4Dq3pOShAtLker1lvzyvp3Ok6tPcNLaQ0F9xeCCKxwpbXVgR6MnvGxDoXHtv8RA4OzNY6hFs/WXCQ1D4EE83818SEBwbeSlRftArPXxPEPUdjrlht4pvpXUaQmhL9Dcsr+24rPDRckoAv9lUlZO8L9BwjWvmpv2umTbTa6ffQ3VwR5g75KiDoylUQcvCkuOFE7ZGFG8pFg/TvNikCEobx/e+1ELgoh+OEBm/qAijHHMQGUM5cN1ri7lLGRJ41rY0A7UpbLqTHqjW7BLnM833m/hvotZFXs63y54zLfmSycDrnjunKHOEzF8oGR3r/dHnpqaUG0N/bKvw5Xjv+81fZLSg7iMNojKxyQ5Finte0oG3FgVYOzfJbTL9JskvQR1uZifMqJF4yevFwZ7cliiqUPCcdjnleURCnkcgijTf7BD9isbvPSV/R6tq9V8s9+JYgakrbJVSBQ8WI6kpV4t57BTxeMFrdLzleSPdqsx49jsPAow=
+    admin-password: AgCcnRkzo+58v+K8JXaJYeYT5O35rWYyKCBcKJYOrck1/31YntoLWxFQqnYQGnOkjEuYKja2IV2T599vE+xqc//W8oYVbXIqmaNs6dyCj9IBxKzq0QuXdqPbHtqBf6HrnSFLxZfKXPhvMr+rxmOuLJ/6bPteCTpJWO65To9/S4ONltNid25lPrAss/k00Prf+IzurBhwReAgT15HkClhAaTE8XcIftqn9jlZ5tuKd91NmYUAsm/dfBJecd+0kNIsLYycAwwF84QbAC58yzybniXlFQQ17XsUv2gR/4B9YwTqZrk7af58drN+BT/NB5LRNnf+k+0vMdkfse/jWM37O3hKZ1uEMxJSlKsIsc3un1I1jJ9dRnJ4r5/RcUJPI76HzPQ95y8onxaB6SOThHhZcDl3xGTVfMQjCBlWbdo5tQtYIhh4TBr6immRrknM/cGZ3KzdEPi/ks8wK9NW9kpLeFnmT3Dix0io40e8TtJaKAf43gmswKWaeiHp//wCu7r/UuX0iE+RI2KYdni11vIOPmGRJIWd9mJO2WsgIhTvBGO+qm7WhOZfdWD3yBSVQ0AF+zH/G64IOjn8DI18wOB/xXZ6M0D1udky0FiU8UmZzP7JuUZCQb4iOBSYMxlA+C+oGTNgLcVgutIOXy/9w5RhucX12wBKavRshDECsaYGEiygBLXXb1j9cU5m80YdG6EEwpAl4mNV8/hgs29ipiTVV94xHsAjN68yBHL7VSOB32MnMg==
+    admin-user: AgCyeE7IqaIKar4L+ewMUaB1K1VsoKEj/HxnjVCiubd21YpEAFJ6GQg+2Jnx4Dqm/a6lpnoXi77ZD+T9lDWiG5rLdMmfmu/oZPceaTg3cxOwAebdQD9+0rA51OIoJaWOUTSlxXcXJ+9gLrAl7p//ZKLYiR02raQFzqxZH7HhtUBLv+ALhi5a0DpaByvLiyg2GBrUN51ULwiwM9rO/JsjyOxCKobhhJ45ee+cjQ03iuYpFi+ncwXGXYXssqth3fwNCVehAzwTOpUK3aqIH/1CTD5kbPX6ybaunau16Pgk2kbM8JeMLsOhOuGyjjZddfczoidVTM9LMlgELl+stcaFsDoGRtOH2xf2VKd4+dUQvouHYRQFIDEc1Z32l2ejBaaY8CUyY650SY1EhEUBCYn4NwgomTw6AeLpvbK0MYgyGgLo3D+epQIjjdfz9rO6oRcMmO/VlTMxiJWD0WCqbOiv48TjdIrPt/XaVqK2OybeJGKWWz4jvq+pGQ0ZtM5+OUcUQF7h5EyBJb5ayaPS/gXTxsPajzRDZ7sJCYmxFHu6QP4XQ+23LgKsFNAPpuSSjiwJcS0+bt9Y6eXYbGbI4Bl3Xmbrr5wcpZEH9pL/NlUi1BWKn0M2PjnZWpPTjhqoEnfZqWsoQI3Mp6egZDM/EW0TV7AB+N5hF00FvyAOqsVU9pFa/RgpoSpgKTDYz+OER2zNHe7ECPbimQ==
+  template:
+    metadata:
+      creationTimestamp: null
+      name: grafana
+      namespace: monitoring
