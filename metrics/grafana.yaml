@@ -20,6 +20,7 @@ spec:
           GF_SECURITY_DISABLE_INITIAL_ADMIN_CREATION: true
           GF_SECURITY_COOKIE_SECURE: true
           GF_LOG_LEVEL: debug
+          GF_ALERTING_ENABLED: false
           GF_AUTH_BASIC_ENABLED: false
           GF_AUTH_DISABLE_LOGIN_FORM: true
           GF_SERVER_ROOT_URL: https://grafana.srueg.ch
@@ -30,8 +31,8 @@ spec:
           GF_AUTH_GENERIC_OAUTH_AUTH_URL: https://sso.srueg.ch/auth/realms/lab/protocol/openid-connect/auth
           GF_AUTH_GENERIC_OAUTH_TOKEN_URL: https://sso.srueg.ch/auth/realms/lab/protocol/openid-connect/token
           GF_AUTH_GENERIC_OAUTH_API_URL: https://sso.srueg.ch/auth/realms/lab/protocol/openid-connect/userinfo
-          GF_AUTH_GENERIC_OAUTH_API_URL_SCOPES: openid profile email
-          GF_AUTH_GENERIC_OAUTH_ROLE_ATTRIBUTE_PATH: resource_access.grafana.roles[0]
+          GF_AUTH_GENERIC_OAUTH_API_URL_SCOPES: openid profile email roles
+          GF_AUTH_GENERIC_OAUTH_ROLE_ATTRIBUTE_PATH: roles[0]
         ingress:
           enabled: true
           hosts:
