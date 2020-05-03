@@ -45,7 +45,7 @@ spec:
             datasources:
             - name: Loki
               type: loki
-              url: http://loki-stack.loki.cluster.local:3100
+              url: http://loki-stack.loki:3100
               access: proxy
               isDefault: false
         admin:
