@@ -21,6 +21,10 @@ spec:
           secret:
             createSecret: false
         server:
+          resources:
+            limits:
+              cpu: 200m
+              memory: 64Mi
           extraArgs:
           - --insecure
           config:
@@ -45,6 +49,20 @@ spec:
           extraArgs:
           - --app-resync
           - '10'
+          resources:
+            limits:
+              cpu: 500m
+              memory: 128Mi
+        repoServer:
+          resources:
+            limits:
+              cpu: 500m
+              memory: 512Mi
+        redis:
+          resources:
+            limits:
+              cpu: 200m
+              memory: 128Mi
 ---
 apiVersion: bitnami.com/v1alpha1
 kind: SealedSecret
