@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: oauth-proxy
-        image: quay.io/pusher/oauth2_proxy:v5.1.0
+        image: quay.io/oauth2-proxy/oauth2-proxy:v5.1.0
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 4180
@@ -25,13 +25,17 @@ spec:
         args:
         - --http-address=:4180
         - --https-address=
-        - --provider=github
-        - --email-domain=*
-        - --github-org=srueg-labs
+        - --provider=keycloak
+        - --keycloak-group=/admin
+        - --login-url="https://sso.srueg.ch/auth/realms/lab/protocol/openid-connect/auth"
+        - --redeem-url="https://sso.srueg.ch/auth/realms/lab/protocol/openid-connect/token"
+        - --validate-url="https://sso.srueg.ch/auth/realms/lab/protocol/openid-connect/userinfo"
         - --upstream=file:///dev/null
+        - --reverse-proxy
+        - --silence-ping-logging
         env:
         - name: OAUTH2_PROXY_CLIENT_ID
-          value: c258ac8036bf167fd5d5
+          value: netdata
         - name: OAUTH2_PROXY_COOKIE_SAMESITE
           value: lax
         - name: OAUTH2_PROXY_CLIENT_SECRET
