@@ -47,7 +47,7 @@ spec:
         controller:
           extraArgs:
           - --app-resync
-          - '10'
+          - '60'
           resources:
             limits:
               cpu: 500m
