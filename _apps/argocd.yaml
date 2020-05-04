@@ -24,7 +24,6 @@ spec:
           resources:
             limits:
               cpu: 200m
-              memory: 64Mi
           extraArgs:
           - --insecure
           config:
@@ -52,7 +51,6 @@ spec:
           resources:
             limits:
               cpu: 500m
-              memory: 128Mi
         repoServer:
           resources:
             limits:
@@ -61,7 +59,6 @@ spec:
           resources:
             limits:
               cpu: 200m
-              memory: 128Mi
 ---
 apiVersion: bitnami.com/v1alpha1
 kind: SealedSecret
