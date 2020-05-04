@@ -27,6 +27,10 @@ spec:
           persistence:
             dbVendor: postgres
             deployPostgres: true
+          resources:
+            limits:
+              cpu: 500m
+              memory: 1Gi
         postgresql:
           persistence:
             enabled: true
