@@ -34,6 +34,7 @@ spec:
         - --upstream=file:///dev/null
         - --reverse-proxy
         - --silence-ping-logging
+        - --cookie-expire=5m
         env:
         - name: OAUTH2_PROXY_CLIENT_ID
           value: netdata
