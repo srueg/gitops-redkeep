@@ -12,9 +12,6 @@
 #       - {key: k3s-upgrade, operator: NotIn, values: ["disabled", "false"]}
 #       - {key: node-role.kubernetes.io/master, operator: In, values: ["true"]}
 #   serviceAccountName: system-upgrade
-#   cordon: true
-#   drain:
-#     force: false
 #   upgrade:
 #     image: docker.io/rancher/k3s-upgrade
 #   version: v1.17.4+k3s1
