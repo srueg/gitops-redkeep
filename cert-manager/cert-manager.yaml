@@ -14,6 +14,7 @@ spec:
     targetRevision: v0.*
     helm:
       values: |
+        installCRDs: true
         securityContext:
           enabled: true
         ingressShim:
