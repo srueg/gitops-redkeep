@@ -27,6 +27,7 @@ spec:
         - --https-address=
         - --provider=keycloak
         - --keycloak-group=/admin
+        - --scope="openid email"
         - --email-domain=*
         - --login-url=https://sso.srueg.ch/auth/realms/lab/protocol/openid-connect/auth
         - --redeem-url=https://sso.srueg.ch/auth/realms/lab/protocol/openid-connect/token
