@@ -5,11 +5,11 @@ metadata:
   namespace: argocd
 spec:
   destination:
-    namespace: openvpn
+    namespace: vpn
     server: https://kubernetes.default.svc
   project: default
   source:
-    path: openvpn
+    path: vpn
     repoURL: https://github.com/srueg/gitops-redkeep.git
     targetRevision: master
   syncPolicy:
