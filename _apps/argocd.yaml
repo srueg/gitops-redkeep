@@ -34,6 +34,7 @@ spec:
               issuer: https://sso.srueg.ch/auth/realms/lab
               clientID: argocd
               clientSecret: $oidc.keycloak.clientSecret
+              requestedScopes: ["openid", "profile", "email"]
           rbacConfig:
             policy.default: role:readonly
             policy.csv: |
