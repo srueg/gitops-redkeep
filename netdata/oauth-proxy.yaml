@@ -28,7 +28,9 @@ spec:
         - --provider=keycloak
         - --keycloak-group=/admin
         - --email-domain=*
-        - --oidc-issuer-url=https://sso.srueg.ch/auth/realms/lab
+        - --login-url=https://sso.srueg.ch/auth/realms/lab/protocol/openid-connect/auth
+        - --redeem-url=https://sso.srueg.ch/auth/realms/lab/protocol/openid-connect/token
+        - --validate-url=https://sso.srueg.ch/auth/realms/lab/protocol/openid-connect/userinfo
         - --upstream=file:///dev/null
         - --reverse-proxy
         - --silence-ping-logging
