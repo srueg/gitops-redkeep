@@ -16,6 +16,7 @@ spec:
       values: |
         keycloak:
           replicas: 2
+          affinity: ""
           extraArgs: -Dkeycloak.profile.feature.account_api=enabled -Dkeycloak.profile.feature.account2=enabled
           javaToolOptions: -XX:+UseContainerSupport -XX:MaxRAMPercentage=75.0
           ingress:
