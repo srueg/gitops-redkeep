@@ -28,7 +28,7 @@ spec:
         - --provider=keycloak
         - --keycloak-group=/admin
         - --email-domain=*
-        - --oidc-issuer-url=https://sso.srueg.ch/auth/lab
+        - --oidc-issuer-url=https://sso.srueg.ch/auth/realms/lab
         - --upstream=file:///dev/null
         - --reverse-proxy
         - --silence-ping-logging
