@@ -15,7 +15,9 @@ spec:
     helm:
       values: |
         keycloak:
+          replicas: 2
           extraArgs: -Dkeycloak.profile.feature.account_api=enabled -Dkeycloak.profile.feature.account2=enabled
+          javaToolOptions: -XX:+UseContainerSupport -XX:MaxRAMPercentage=75.0
           ingress:
             enabled: true
             hosts:
@@ -29,8 +31,8 @@ spec:
             deployPostgres: true
           resources:
             limits:
-              cpu: 500m
-              memory: 1Gi
+              cpu: 250m
+              memory: 512Mi
         postgresql:
           persistence:
             enabled: true
