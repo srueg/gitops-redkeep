@@ -12,6 +12,8 @@ spec:
     path: vpn
     repoURL: https://github.com/srueg/gitops-redkeep.git
     targetRevision: master
+    directory:
+      recurse: true
   syncPolicy:
     automated:
       selfHeal: true
