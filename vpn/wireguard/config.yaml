@@ -26,3 +26,8 @@ data:
     # Pixel2
     PublicKey = eZ1cez7MvoxtvbNsfCdogDIH7CE1Ewf55IifajWY5mM=
     AllowedIPs = 10.1.30.4/32,fdb0:5dfe:70d8:7f0b::4/128
+
+    [Peer]
+    # MacBook M.
+    PublicKey = JIK3nSmGIOJR2ZqYtguBj1Ev0+WNiOjfFUBXKWZc+00=
+    AllowedIPs = 10.1.30.5/32,fdb0:5dfe:70d8:7f0b::5/128
