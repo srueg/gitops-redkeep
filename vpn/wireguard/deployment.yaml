@@ -1,0 +1,56 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wireguard
+  namespace: vpn
+  labels:
+    app: wireguard
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: wireguard
+  template:
+    metadata:
+      labels:
+        app: wireguard
+    spec:
+      restartPolicy: Always
+      volumes:
+        - name: wg0-key
+          secret:
+            secretName: wg0-key
+        - name: wg0-conf
+          configMap:
+            name: wg0-conf
+      containers:
+        - name: wireguard
+          image: quay.io/srueg/wireguard:v0.0.1
+          imagePullPolicy: Always
+          lifecycle:
+            postStart:
+              exec:
+                command: ["wg-quick", "up", "wg0"]
+            preStop:
+              exec:
+                command: ["wg-quick", "down", "wg0"]
+          command: ["tail", "-f", "/dev/null"]
+          volumeMounts:
+            - name: wg0-key
+              mountPath: /etc/wireguard/wg0.key
+              subPath: wg0.key
+              readOnly: true
+            - name: wg0-conf
+              mountPath: /etc/wireguard/wg0.conf
+              subPath: wg0.conf
+              readOnly: true
+          ports:
+            - containerPort: 51820
+              hostPort: 51820
+              protocol: UDP
+          securityContext:
+            capabilities:
+              add:
+                - NET_ADMIN
