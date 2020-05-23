@@ -31,3 +31,8 @@ data:
     # MacBook M.
     PublicKey = JIK3nSmGIOJR2ZqYtguBj1Ev0+WNiOjfFUBXKWZc+00=
     AllowedIPs = 10.1.30.5/32,fdb0:5dfe:70d8:7f0b::5/128
+
+    [Peer]
+    # edgerouter-x
+    PublicKey = WqMz2MI032ucMsN16f0IZHF4iHyRLtXIz0liX8uezng=
+    AllowedIPs = 10.1.30.10/32,fdb0:5dfe:70d8:7f0b::10/128
