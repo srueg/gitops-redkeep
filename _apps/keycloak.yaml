@@ -18,7 +18,7 @@ spec:
           replicas: 2
           affinity: ""
           extraArgs: -Dkeycloak.profile.feature.account_api=enabled -Dkeycloak.profile.feature.account2=enabled
-          javaToolOptions: -XX:+UseContainerSupport -XX:MaxRAMPercentage=75.0
+          javaToolOptions: -XX:+UseContainerSupport -XX:MaxRAMPercentage=50.0
           ingress:
             enabled: true
             hosts:
@@ -32,7 +32,6 @@ spec:
             deployPostgres: true
           resources:
             limits:
-              cpu: 500m
               memory: 512Mi
         postgresql:
           persistence:
