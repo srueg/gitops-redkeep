@@ -14,7 +14,7 @@ spec:
     targetRevision: master
     helm:
       values: |
-        master:
+        parent:
           env:
             DO_NOT_TRACK: "1"
           database:
@@ -22,7 +22,7 @@ spec:
             storageclass: ssd
           alarms:
             persistence: false
-        slave:
+        child:
           env:
             DO_NOT_TRACK: "1"
           persistUniqueID: false
