@@ -34,6 +34,7 @@ spec:
           enabled: true
           rules:
           - host: sso.srueg.ch
+            paths: ["/"]
           tls:
           - hosts:
             - sso.srueg.ch
@@ -41,6 +42,7 @@ spec:
         resources:
           limits:
             memory: 512Mi
+        imagePullSecrets: []
 
         postgresql:
           enabled: true
