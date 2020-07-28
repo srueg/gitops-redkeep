@@ -21,7 +21,7 @@ spec:
     spec:
       containers:
       - name: plex
-        image: "docker.io/plexinc/pms-docker:1.19.2.2737-b69929dab"
+        image: docker.io/plexinc/pms-docker:1.19.5.3112-b23ab3896
         imagePullPolicy: IfNotPresent
         env:
         - name: PLEX_UID
@@ -29,9 +29,9 @@ spec:
         - name: PLEX_GID
           value: "10001"
         - name: TZ
-          value: "Europe/Zurich"
+          value: Europe/Zurich
         - name: ADVERTISE_IP
-          value: "https://plex.srueg.ch"
+          value: https://plex.srueg.ch
         - name: PLEX_CLAIM
           valueFrom:
             secretKeyRef:
