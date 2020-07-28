@@ -43,12 +43,6 @@ spec:
             value: "2"
           - name: PROXY_ADDRESS_FORWARDING
             value: "true"
-          - name: KEYCLOAK_HTTP_PORT
-            value: "80"
-          - name: KEYCLOAK_HTTPS_PORT
-            value: "443"
-          - name: KEYCLOAK_HOSTNAME
-            value: sso.srueg.ch
         ingress:
           enabled: true
           rules:
