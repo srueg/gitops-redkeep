@@ -37,6 +37,7 @@ spec:
           tls:
           - hosts:
             - sso.srueg.ch
+            secretName: ""
         resources:
           limits:
             memory: 512Mi
