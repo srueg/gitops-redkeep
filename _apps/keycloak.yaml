@@ -11,29 +11,38 @@ spec:
   source:
     repoURL: https://codecentric.github.io/helm-charts
     chart: keycloak
-    targetRevision: '*'
+    targetRevision: '9.*'
     helm:
       values: |
-        keycloak:
-          replicas: 2
-          affinity: ""
-          extraArgs: -Dkeycloak.profile.feature.account_api=enabled -Dkeycloak.profile.feature.account2=enabled
-          javaToolOptions: -XX:+UseContainerSupport -XX:MaxRAMPercentage=50.0
-          ingress:
-            enabled: true
-            hosts:
+        replicas: 2
+        affinity: ""
+        extraEnv: |
+          - name: KEYCLOAK_USER
+            value: keycloak
+          - name: KEYCLOAK_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: keycloak
+                key: password
+          - name: JAVA_OPTS
+            value: >-
+              -XX:+UseContainerSupport
+              -XX:MaxRAMPercentage=50.0
+              -Dkeycloak.profile.feature.account_api=enabled
+              -Dkeycloak.profile.feature.account2=enabled
+        ingress:
+          enabled: true
+          rules:
+          - host: sso.srueg.ch
+          tls:
+          - hosts:
             - sso.srueg.ch
-            tls:
-            - hosts:
-              - sso.srueg.ch
-          existingSecret: keycloak
-          persistence:
-            dbVendor: postgres
-            deployPostgres: true
-          resources:
-            limits:
-              memory: 512Mi
+        resources:
+          limits:
+            memory: 512Mi
+
         postgresql:
+          enabled: true
           persistence:
             enabled: true
             size: 1Gi
