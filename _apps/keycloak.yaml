@@ -43,6 +43,8 @@ spec:
             value: "2"
           - name: PROXY_ADDRESS_FORWARDING
             value: "true"
+          - name: KEYCLOAK_STATISTICS
+            value: all
         ingress:
           enabled: true
           rules:
