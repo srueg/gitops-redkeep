@@ -22,6 +22,7 @@ spec:
             storageclass: ssd
           alarms:
             persistence: false
+            storageclass: ssd
         child:
           env:
             DO_NOT_TRACK: "1"
