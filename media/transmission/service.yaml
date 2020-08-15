@@ -12,6 +12,9 @@ spec:
     - name: http
       port: 80
       targetPort: http
+    - name: transmission
+      port: 9091
+      targetPort: transmission
   selector:
     app.kubernetes.io/name: transmission
     app.kubernetes.io/instance: transmission
