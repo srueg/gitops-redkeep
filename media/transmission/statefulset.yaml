@@ -70,9 +70,9 @@ spec:
             - name: TRANSMISSION_WEB_HOME
               value: "/combustion-release/"
             - name: USER
-              value: admin
+              value: ""
             - name: PASS
-              value: admin
+              value: ""
           volumeMounts:
             - mountPath: /config/
               name: config
