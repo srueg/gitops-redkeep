@@ -3,7 +3,9 @@
     "config:base"
   ],
   "kubernetes": {
-    "fileMatch": ["(^|/)*\\.yaml$"],
+    "fileMatch": [
+      "(^|/)*\\.yaml$"
+    ],
     "digest": {
       "enabled": true
     }
@@ -17,7 +19,15 @@
       "requiredStatusChecks": null
     },
     {
-      "datasources": ["docker"],
+      "datasources": [
+        "docker"
+      ],
+      "packagePatterns": [
+        "^linuxserver"
+      ],
+      "packageNames": [
+        "plexinc/pms-docker"
+      ],
       "versioning": "loose"
     }
   ]
