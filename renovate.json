@@ -23,10 +23,10 @@
         "docker"
       ],
       "packagePatterns": [
-        "^linuxserver"
+        "^docker.io/linuxserver"
       ],
       "packageNames": [
-        "plexinc/pms-docker"
+        "docker.io/plexinc/pms-docker"
       ],
       "versioning": "loose"
     }
