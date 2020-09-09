@@ -69,6 +69,10 @@ spec:
               value: "Europe/Zurich"
             - name: TRANSMISSION_WEB_HOME
               value: "/combustion-release/"
+            - name: USER
+              value: admin
+            - name: PASS
+              value: admin
           volumeMounts:
             - mountPath: /config/
               name: config
