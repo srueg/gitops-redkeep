@@ -15,6 +15,10 @@
       ],
       "automerge": true,
       "requiredStatusChecks": null
+    },
+    {
+      "datasources": ["docker"],
+      "versioning": "loose"
     }
   ]
 }
