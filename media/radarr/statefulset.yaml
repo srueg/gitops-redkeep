@@ -60,7 +60,7 @@ spec:
               path: /oauth/health
               port: http
         - name: radarr
-          image: docker.io/linuxserver/radarr:v0.2.0.1480-ls59
+          image: docker.io/linuxserver/radarr:0.2.0.1540-ls20
           imagePullPolicy: IfNotPresent
           env:
             - name: PUID
