@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
       - name: timemachine
-        image: docker.io/mbentley/timemachine:smb@sha256:feff35e8d796aef35bc79b60b67feca54bc6c943a28941262eb9348bc309cadf
+        image: docker.io/mbentley/timemachine:smb@sha256:e80d2add43daae477dddaf8a684d7ca0a6449136271f55f29077e449d67385cc
         env:
         - name: PASSWORD
           valueFrom:
