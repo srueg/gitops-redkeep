@@ -58,7 +58,7 @@ spec:
               path: /oauth/health
               port: http
         - name: nzbget
-          image: docker.io/linuxserver/nzbget:v21.1-r2311-ls8
+          image: docker.io/linuxserver/nzbget:v21.1-r2311-ls9
           imagePullPolicy: IfNotPresent
           env:
             - name: PUID
