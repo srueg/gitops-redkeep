@@ -9,8 +9,8 @@ spec:
     server: https://kubernetes.default.svc
   project: default
   source:
-    repoURL: https://kubernetes-charts.storage.googleapis.com
-    chart: nginx-ingress
+    repoURL: https://kubernetes.github.io/ingress-nginx
+    chart: ingress-nginx
     targetRevision: '*'
     helm:
       values: |
