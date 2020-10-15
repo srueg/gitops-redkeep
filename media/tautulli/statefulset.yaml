@@ -58,7 +58,7 @@ spec:
               path: /oauth/health
               port: http
         - name: tautulli
-          image: docker.io/linuxserver/tautulli:v2.5.6-ls13
+          image: docker.io/linuxserver/tautulli:v2.5.6-ls14
           imagePullPolicy: IfNotPresent
           env:
             - name: PUID
