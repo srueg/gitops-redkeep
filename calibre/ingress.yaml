@@ -1,0 +1,22 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: calibre
+  namespace: calibre
+  labels:
+    app.kubernetes.io/name: calibre
+    app.kubernetes.io/instance: calibre
+  annotations:
+    nginx.ingress.kubernetes.io/proxy-body-size: 256m
+spec:
+  tls:
+  - hosts:
+    - calibre.srueg.ch
+  rules:
+  - host: calibre.srueg.ch
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: calibre
+          servicePort: http
