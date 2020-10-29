@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
       - name: timemachine
-        image: docker.io/mbentley/timemachine:smb@sha256:7fa829eac39fbbe355b0e1f81ec23646395966e866cd5ff4288e01c158c738ac
+        image: docker.io/mbentley/timemachine:latest@sha256:d73e20458c03a42e55afc91fa7bf75964beb48f7d3380b3f3e5df8dac4542cc0
         env:
         - name: PASSWORD
           valueFrom:
@@ -32,6 +32,19 @@ spec:
         volumeMounts:
         - name: data
           mountPath: /opt/timemachine
+        - name: lib
+          mountPath: /var/lib/samba
+        - name: cache
+          mountPath: /var/cache/samba
+        - name: run
+          mountPath: /run/samba
+  volumes:
+  - name: lib
+    emptyDir: {}
+  - name: cache
+    emptyDir: {}
+  - name: run
+    emptyDir: {}
   volumeClaimTemplates:
   - metadata:
       name: data
