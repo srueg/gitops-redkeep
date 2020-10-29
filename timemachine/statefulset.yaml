@@ -38,13 +38,13 @@ spec:
           mountPath: /var/cache/samba
         - name: run
           mountPath: /run/samba
-  volumes:
-  - name: lib
-    emptyDir: {}
-  - name: cache
-    emptyDir: {}
-  - name: run
-    emptyDir: {}
+      volumes:
+      - name: lib
+        emptyDir: {}
+      - name: cache
+        emptyDir: {}
+      - name: run
+        emptyDir: {}
   volumeClaimTemplates:
   - metadata:
       name: data
