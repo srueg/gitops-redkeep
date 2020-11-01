@@ -30,7 +30,6 @@ spec:
         ports:
         - name: smb
           containerPort: 445
-          hostPort: 445
           protocol: TCP
         volumeMounts:
         - name: data
