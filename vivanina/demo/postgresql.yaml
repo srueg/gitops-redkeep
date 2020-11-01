@@ -11,7 +11,7 @@ spec:
   source:
     repoURL: https://charts.bitnami.com/bitnami
     chart: postgresql
-    targetRevision: 8.*
+    targetRevision: '*'
     helm:
       values: |
         postgresqlDatabase: vivanina-demo
