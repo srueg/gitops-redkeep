@@ -1,4 +1,4 @@
-apiVersion: cert-manager.io/v1alpha2
+apiVersion: cert-manager.io/v1
 kind: Issuer
 metadata:
   name: letsencrypt-production
@@ -11,7 +11,7 @@ spec:
       name: letsencrypt-production-account-key
     solvers:
     - dns01:
-        clouddns:
+        cloudDNS:
           project: srueg-labor
           serviceAccountSecretRef:
             name: clouddns-dns01-solver-svc-acct

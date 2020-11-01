@@ -1,4 +1,4 @@
-apiVersion: cert-manager.io/v1alpha2
+apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
   name: srueg-ch-wildcard
@@ -7,7 +7,7 @@ spec:
   secretName: srueg-ch-wildcard-tls
   issuerRef:
     name: letsencrypt-production
-  commonName: "*.srueg.ch"
   dnsNames:
   - "*.srueg.ch"
-  keyAlgorithm: ecdsa
+  privateKey:
+    algorithm: ecdsa
