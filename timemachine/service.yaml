@@ -7,8 +7,8 @@ metadata:
     app.kubernetes.io/name: timemachine
 spec:
   ports:
-  - name: netatalk
-    port: 548
-    targetPort: netatalk
+  - name: smb
+    port: 445
+    targetPort: smb
   selector:
     app.kubernetes.io/name: timemachine

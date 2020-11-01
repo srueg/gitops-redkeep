@@ -20,6 +20,8 @@ spec:
       - name: timemachine
         image: docker.io/mbentley/timemachine:latest@sha256:d73e20458c03a42e55afc91fa7bf75964beb48f7d3380b3f3e5df8dac4542cc0
         env:
+        - name: SMB_PORT
+          value: "445"
         - name: PASSWORD
           valueFrom:
             secretKeyRef:
@@ -29,6 +31,7 @@ spec:
         - name: smb
           containerPort: 445
           hostPort: 445
+          protocol: TCP
         volumeMounts:
         - name: data
           mountPath: /opt/timemachine
