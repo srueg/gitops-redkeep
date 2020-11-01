@@ -9,7 +9,7 @@ spec:
     server: https://kubernetes.default.svc
   project: default
   source:
-    repoURL: https://kubernetes-charts.storage.googleapis.com
+    repoURL: https://grafana.github.io/helm-charts
     chart: grafana
     targetRevision: '*'
     helm:
