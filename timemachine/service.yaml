@@ -6,9 +6,11 @@ metadata:
   labels:
     app.kubernetes.io/name: timemachine
 spec:
+  type: NodePort
   ports:
   - name: smb
     port: 445
     targetPort: smb
+    nodePort: 30445
   selector:
     app.kubernetes.io/name: timemachine
