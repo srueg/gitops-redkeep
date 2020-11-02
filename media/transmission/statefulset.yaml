@@ -58,7 +58,7 @@ spec:
               path: /oauth/health
               port: http
         - name: transmission
-          image: docker.io/linuxserver/transmission:3.00-r0-ls67
+          image: docker.io/linuxserver/transmission:3.00-r0-ls68
           imagePullPolicy: IfNotPresent
           env:
             - name: PUID
