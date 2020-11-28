@@ -5,6 +5,9 @@
   "ignorePresets": [
     ":prHourlyLimit2"
   ],
+  "schedule": [
+    "after 4pm"
+  ],
   "kubernetes": {
     "fileMatch": [
       "(^|/)*\\.yaml$"
