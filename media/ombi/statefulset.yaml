@@ -21,7 +21,7 @@ spec:
     spec:
       containers:
         - name: ombi
-          image: docker.io/linuxserver/ombi:v3.0.5223-ls76
+          image: docker.io/linuxserver/ombi:3.0.5227-ls35
           imagePullPolicy: IfNotPresent
           env:
             - name: PUID
