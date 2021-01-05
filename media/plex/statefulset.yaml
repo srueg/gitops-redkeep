@@ -32,11 +32,6 @@ spec:
           value: Europe/Zurich
         - name: ADVERTISE_IP
           value: https://plex.srueg.ch
-        - name: PLEX_CLAIM
-          valueFrom:
-            secretKeyRef:
-              name: plex-claim
-              key: plex-claim
         volumeMounts:
         - mountPath: /config
           name: config
