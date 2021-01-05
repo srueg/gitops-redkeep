@@ -18,7 +18,7 @@ spec:
           kind: DaemonSet
           hostNetwork: true
           service:
-            enabled: false
+            enabled: true
           dnsPolicy: ClusterFirstWithHostNet
           extraArgs:
             default-ssl-certificate: ingress-controller/srueg-ch-wildcard-tls
