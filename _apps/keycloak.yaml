@@ -65,6 +65,9 @@ spec:
             enabled: true
             size: 1Gi
             storageClass: zfs
+            selector:
+              matchLabels:
+                usage: keycloak
           existingSecret: keycloak-postgresql
 ---
 apiVersion: v1
