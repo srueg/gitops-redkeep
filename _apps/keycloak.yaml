@@ -63,11 +63,7 @@ spec:
           enabled: true
           persistence:
             enabled: true
-            size: 1Gi
-            storageClass: zfs
-            selector:
-              matchLabels:
-                usage: keycloak
+            existingClaim: keycloak-postgresql
           existingSecret: keycloak-postgresql
 ---
 apiVersion: v1
@@ -100,3 +96,19 @@ spec:
     metadata:
       name: keycloak-postgresql
       namespace: keycloak
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: keycloak-postgresql
+  namespace: keycloak
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+  storageClassName: zfs
+  selector:
+    matchLabels:
+      usage: keycloak
