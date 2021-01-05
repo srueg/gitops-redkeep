@@ -18,11 +18,9 @@ spec:
           env:
             DO_NOT_TRACK: "1"
           database:
-            volumesize: 1951Mi
-            storageclass: ssd
+            persistence: false
           alarms:
             persistence: false
-            storageclass: ssd
         child:
           env:
             DO_NOT_TRACK: "1"
