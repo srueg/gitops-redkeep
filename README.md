@@ -1,13 +1,12 @@
 # GitOps Config
-K8s resources to use with [fluxcd Flux](https://github.com/fluxcd/flux)
+K8s resources to use with [Argo CD](https://argoproj.github.io/argo-cd/)
 
 
 ## Bootstrap New Cluster
 ```bash
-./bootstrap.sh
+helm install argocd argo/argo-cd --namespace argocd --values values.yaml --create-namespace --set admin.enabled=true
 
-export TILLER_NAMESPACE=tiller
-export FLUX_FORWARD_NAMESPACE=flux
+kubectl get pods -n argocd -l app.kubernetes.io/name=argocd-server -o name | cut -d'/' -f 2
 ```
 
 ## Use kubeseal
