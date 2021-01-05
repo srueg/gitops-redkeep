@@ -19,6 +19,7 @@ spec:
           hostNetwork: true
           service:
             enabled: true
+            type: ClusterIP
           dnsPolicy: ClusterFirstWithHostNet
           extraArgs:
             default-ssl-certificate: ingress-controller/srueg-ch-wildcard-tls
