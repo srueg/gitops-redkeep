@@ -60,7 +60,7 @@ spec:
               path: /oauth/health
               port: http
         - name: sonarr
-          image: docker.io/linuxserver/sonarr:2.0.0.5344-ls9
+          image: docker.io/linuxserver/sonarr:2.0.0.5344-ls91
           imagePullPolicy: IfNotPresent
           env:
             - name: PUID
