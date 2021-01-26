@@ -36,7 +36,7 @@ spec:
           - --login-url=https://sso.srueg.ch/auth/realms/lab/protocol/openid-connect/auth
           - --redeem-url=https://sso.srueg.ch/auth/realms/lab/protocol/openid-connect/token
           - --validate-url=https://sso.srueg.ch/auth/realms/lab/protocol/openid-connect/userinfo
-          - --upstream=http://localhost:6789
+          - --upstream=http://localhost:8181
           - --reverse-proxy
           - --silence-ping-logging
           - --cookie-expire=1h
