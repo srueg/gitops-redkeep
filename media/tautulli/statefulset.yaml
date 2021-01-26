@@ -20,42 +20,49 @@ spec:
         app.kubernetes.io/instance: tautulli
     spec:
       containers:
-        - name: gatekeeper
-          image: quay.io/keycloak/keycloak-gatekeeper:10.0.0
+        - name: oauth-proxy
+          image: quay.io/oauth2-proxy/oauth2-proxy:v6.1.1
           imagePullPolicy: IfNotPresent
-          args:
-          - --listen=:3000
-          - --discovery-url=https://sso.srueg.ch/auth/realms/lab
-          - --client-id=tautulli
-          - --upstream-url=http://localhost:8181
-          - --resources
-          - "uri=/*|roles=tautulli:login"
-          - --enable-encrypted-token
-          - --force-encrypted-cookie
-          - --enable-logging
-          - --enable-refresh-tokens
-          env:
-          - name: PROXY_CLIENT_SECRET
-            valueFrom:
-              secretKeyRef:
-                name: tautulli-gatekeeper
-                key: client-secret
-          - name: PROXY_ENCRYPTION_KEY
-            valueFrom:
-              secretKeyRef:
-                name: tautulli-gatekeeper
-                key: encryption-key
           ports:
-          - name: http
-            containerPort: 3000
+          - containerPort: 4180
+            name: http
+          args:
+          - --http-address=:4180
+          - --https-address=
+          - --provider=keycloak
+          - --keycloak-group=/admin
+          - --email-domain=*
+          - --scope=openid profile email
+          - --login-url=https://sso.srueg.ch/auth/realms/lab/protocol/openid-connect/auth
+          - --redeem-url=https://sso.srueg.ch/auth/realms/lab/protocol/openid-connect/token
+          - --validate-url=https://sso.srueg.ch/auth/realms/lab/protocol/openid-connect/userinfo
+          - --upstream=http://localhost:6789
+          - --reverse-proxy
+          - --silence-ping-logging
+          - --cookie-expire=1h
+          env:
+          - name: OAUTH2_PROXY_CLIENT_ID
+            value: tautulli
+          - name: OAUTH2_PROXY_COOKIE_SAMESITE
+            value: lax
+          - name: OAUTH2_PROXY_CLIENT_SECRET
+            valueFrom:
+              secretKeyRef:
+                name: tautulli-oauth
+                key: client-secret
+          - name: OAUTH2_PROXY_COOKIE_SECRET
+            valueFrom:
+              secretKeyRef:
+                name: tautulli-oauth
+                key: cookie-secret
           livenessProbe:
+            initialDelaySeconds: 30
             httpGet:
-              path: /oauth/health
+              path: /ping
               port: http
-            initialDelaySeconds: 60
           readinessProbe:
             httpGet:
-              path: /oauth/health
+              path: /ping
               port: http
         - name: tautulli
           image: docker.io/linuxserver/tautulli:v2.6.5-ls20
