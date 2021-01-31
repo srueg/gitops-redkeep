@@ -1,0 +1,91 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: k3s-backup
+  namespace: utils
+  labels:
+    cronjob: k3s-backup
+spec:
+  schedule: 23 * * * *
+  concurrencyPolicy: Forbid
+  successfulJobsHistoryLimit: 3
+  failedJobsHistoryLimit: 3
+  jobTemplate:
+    spec:
+      template:
+        metadata:
+          labels:
+            cronjob: k3s-backup
+        spec:
+          initContainers:
+          - name: check
+            image: docker.io/restic/restic:0.11.0
+            imagePullPolicy: IfNotPresent
+            command: ["restic", "check"]
+            env: &env
+            - name: RESTIC_REPOSITORY
+              value: b2:redkeep-3f8d942a
+            - name: RESTIC_CACHE_DIR
+              value: /tmp/restic/
+            - name: RESTIC_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: restic
+                  key: password
+            - name: B2_ACCOUNT_ID
+              valueFrom:
+                secretKeyRef:
+                  name: restic
+                  key: account-id
+            - name: B2_ACCOUNT_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: restic
+                  key: account-key
+            securityContext:
+              privileged: true
+            volumeMounts:
+            - name: tmp
+              mountPath: /tmp/restic/
+          - name: forget
+            image: docker.io/restic/restic:0.11.0
+            imagePullPolicy: IfNotPresent
+            command:
+            - restic
+            - forget
+            - --prune
+            - --keep-hourly=25
+            - --keep-daily=8
+            - --keep-weekly=4
+            - --keep-monthly=2
+            - --keep-yearly=1
+            env: *env
+            securityContext:
+              privileged: true
+            volumeMounts:
+            - name: tmp
+              mountPath: /tmp/restic/
+          containers:
+          - name: backup
+            image: docker.io/restic/restic:0.11.0
+            imagePullPolicy: IfNotPresent
+            command:
+            - restic
+            - backup
+            - /var/lib/rancher/k3s/server/db
+            env: *env
+            securityContext:
+              privileged: true
+            volumeMounts:
+            - name: varlibrancher
+              mountPath: /var/lib/rancher/
+            - name: tmp
+              mountPath: /tmp/restic/
+          volumes:
+          - name: varlibrancher
+            hostPath:
+              path: /var/lib/rancher/
+          - name: tmp
+            emptyDir: {}
+          restartPolicy: Never
+          hostname: redkeep
