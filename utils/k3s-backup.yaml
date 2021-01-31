@@ -26,7 +26,7 @@ spec:
             - name: RESTIC_REPOSITORY
               value: b2:redkeep-3f8d942a
             - name: RESTIC_CACHE_DIR
-              value: /tmp/restic/
+              value: /tmp/
             - name: RESTIC_PASSWORD
               valueFrom:
                 secretKeyRef:
@@ -46,7 +46,7 @@ spec:
               privileged: true
             volumeMounts:
             - name: tmp
-              mountPath: /tmp/restic/
+              mountPath: /tmp/
           - name: forget
             image: docker.io/restic/restic:0.11.0
             imagePullPolicy: IfNotPresent
@@ -64,7 +64,7 @@ spec:
               privileged: true
             volumeMounts:
             - name: tmp
-              mountPath: /tmp/restic/
+              mountPath: /tmp/
           containers:
           - name: backup
             image: docker.io/restic/restic:0.11.0
@@ -80,7 +80,7 @@ spec:
             - name: varlibrancher
               mountPath: /var/lib/rancher/
             - name: tmp
-              mountPath: /tmp/restic/
+              mountPath: /tmp/
           volumes:
           - name: varlibrancher
             hostPath:
