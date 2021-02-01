@@ -6,7 +6,7 @@ metadata:
   labels:
     cronjob: k3s-backup
 spec:
-  schedule: 23 * * * *
+  schedule: 23 05 * * *
   concurrencyPolicy: Forbid
   successfulJobsHistoryLimit: 3
   failedJobsHistoryLimit: 3
