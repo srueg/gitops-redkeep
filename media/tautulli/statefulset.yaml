@@ -40,6 +40,7 @@ spec:
           - --reverse-proxy
           - --silence-ping-logging
           - --cookie-expire=1h
+          - --skip-provider-button
           env:
           - name: OAUTH2_PROXY_CLIENT_ID
             value: tautulli
