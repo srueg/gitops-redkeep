@@ -21,7 +21,7 @@ spec:
     spec:
       containers:
       - name: plex
-        image: docker.io/plexinc/pms-docker:1.21.2.3943-a91458577
+        image: docker.io/plexinc/pms-docker:1.21.3.4014-58bd20c02
         imagePullPolicy: IfNotPresent
         env:
         - name: PLEX_UID
