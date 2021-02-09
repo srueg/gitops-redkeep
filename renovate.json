@@ -6,7 +6,7 @@
     ":prHourlyLimit2"
   ],
   "schedule": [
-    "after 2pm",
+    "after 10am",
     "before 5pm"
   ],
   "kubernetes": {
