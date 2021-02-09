@@ -1,0 +1,14 @@
+name: Pull Request Check
+
+on: [pull_request]
+
+jobs:
+  validation:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Validate manifests
+        uses: makocchi-git/actions-k8s-manifests-validate-kubeval@v1.0.1
+        with:
+          files: '**/*.yaml'
+          token: ${{ secrets.GITHUB_TOKEN }}
