@@ -6,8 +6,7 @@
     ":prHourlyLimit2"
   ],
   "schedule": [
-    "after 10am",
-    "before 5pm"
+    "after 10am and before 5pm"
   ],
   "kubernetes": {
     "fileMatch": [
