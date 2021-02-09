@@ -6,23 +6,24 @@
     ":prHourlyLimit2"
   ],
   "schedule": [
-    "after 4pm"
+    "after 2pm",
+    "before 5pm"
   ],
   "kubernetes": {
     "fileMatch": [
       "(^|/)*\\.yaml$"
-    ],
-    "digest": {
-      "enabled": true
-    }
+    ]
   },
   "packageRules": [
     {
-      "paths": [
-        "utils/**"
-      ],
+      "matchUpdateTypes": ["patch", "pin", "digest"],
       "automerge": true,
-      "requiredStatusChecks": null
+      "pinDigests": true,
+      "labels": ["auto merge"]
+    },
+    {
+      "matchUpdateTypes": ["major"],
+      "labels": ["update major"]
     },
     {
       "datasources": [
