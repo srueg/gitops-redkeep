@@ -13,11 +13,11 @@
       "(^|/)*\\.yaml$"
     ]
   },
+  "pinDigests": true,
   "packageRules": [
     {
       "matchUpdateTypes": ["patch", "pin", "digest"],
       "automerge": true,
-      "pinDigests": true,
       "labels": ["auto merge"]
     },
     {
@@ -34,6 +34,7 @@
       "packageNames": [
         "docker.io/plexinc/pms-docker"
       ],
+      "labels": ["test"],
       "versioning": "loose"
     }
   ]
