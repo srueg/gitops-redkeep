@@ -19,7 +19,7 @@ spec:
         spec:
           containers:
           - name: zfs-scrub
-            image: quay.io/srueg/zfs-utils:v0.4.0
+            image: quay.io/srueg/zfs-utils:v0.4.0@sha256:ce8feeea994e8eb781a62bfb779284be6d842d0d25c38a920e2a6e7a76395632
             imagePullPolicy: Always
             command: ["zpool", "scrub", "tank"]
             securityContext:

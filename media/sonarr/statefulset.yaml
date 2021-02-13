@@ -21,7 +21,7 @@ spec:
     spec:
       containers:
         - name: oauth-proxy
-          image: quay.io/oauth2-proxy/oauth2-proxy:v6.1.1
+          image: quay.io/oauth2-proxy/oauth2-proxy:v6.1.1@sha256:791aef35b8d1d2a325028b188d5a650605d69985a0dab1233c06079e7321eee0
           imagePullPolicy: IfNotPresent
           ports:
           - containerPort: 4180
@@ -66,7 +66,7 @@ spec:
               path: /ping
               port: http
         - name: sonarr
-          image: docker.io/linuxserver/sonarr:2.0.0.5344-ls94
+          image: docker.io/linuxserver/sonarr:2.0.0.5344-ls94@sha256:27ecfa3fbd59d77dd3c3f4a1685d88833bdf229b5a20e63842aa5d8aa6130c7a
           imagePullPolicy: IfNotPresent
           env:
             - name: PUID

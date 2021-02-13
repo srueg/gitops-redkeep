@@ -21,7 +21,7 @@ spec:
     spec:
       containers:
         - name: oauth-proxy
-          image: quay.io/oauth2-proxy/oauth2-proxy:v6.1.1
+          image: quay.io/oauth2-proxy/oauth2-proxy:v6.1.1@sha256:791aef35b8d1d2a325028b188d5a650605d69985a0dab1233c06079e7321eee0
           imagePullPolicy: IfNotPresent
           ports:
           - containerPort: 4180
@@ -66,7 +66,7 @@ spec:
               path: /ping
               port: http
         - name: nzbget
-          image: docker.io/linuxserver/nzbget:v21.1-r2311-ls9
+          image: docker.io/linuxserver/nzbget:v21.1-r2311-ls9@sha256:e1def230249d6c54c78b7acfe1415f34023ba9ed558afe7275dcac1cb39a9a25
           imagePullPolicy: IfNotPresent
           env:
             - name: PUID

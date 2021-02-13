@@ -19,7 +19,7 @@ spec:
         spec:
           initContainers:
           - name: check
-            image: docker.io/restic/restic:0.11.0
+            image: docker.io/restic/restic:0.11.0@sha256:f0aa4f08d960a014b870af459f197fc472495fa9ca104caa76efc3583abd8690
             imagePullPolicy: IfNotPresent
             command: ["restic", "check"]
             env: &env
@@ -48,7 +48,7 @@ spec:
             - name: tmp
               mountPath: /tmp/
           - name: forget
-            image: docker.io/restic/restic:0.11.0
+            image: docker.io/restic/restic:0.11.0@sha256:f0aa4f08d960a014b870af459f197fc472495fa9ca104caa76efc3583abd8690
             imagePullPolicy: IfNotPresent
             command:
             - restic
@@ -67,7 +67,7 @@ spec:
               mountPath: /tmp/
           containers:
           - name: backup
-            image: docker.io/restic/restic:0.11.0
+            image: docker.io/restic/restic:0.11.0@sha256:f0aa4f08d960a014b870af459f197fc472495fa9ca104caa76efc3583abd8690
             imagePullPolicy: IfNotPresent
             command:
             - restic
