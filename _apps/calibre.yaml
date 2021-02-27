@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: calibre
+  namespace: argocd
+spec:
+  destination:
+    namespace: calibre
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: calibre
+    repoURL: https://github.com/srueg/gitops-redkeep.git
+    targetRevision: master
+  syncPolicy:
+    automated:
+      selfHeal: true
+      prune: true
