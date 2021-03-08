@@ -66,7 +66,7 @@ spec:
               path: /ping
               port: http
         - name: tautulli
-          image: docker.io/linuxserver/tautulli:v2.6.6-ls22@sha256:c2718225be5b734556e3821e53685ab8c8ce479f313fe7f25892c9e2b0c8b9c3
+          image: docker.io/linuxserver/tautulli:v2.6.7-ls3@sha256:48be2c4bd172db6b25ba06fb188e8ff97ae106ff975f431a08b7c07942a7650d
           imagePullPolicy: IfNotPresent
           env:
             - name: PUID
