@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
       - name: timemachine
-        image: docker.io/mbentley/timemachine:latest@sha256:c36db934c357f86a200dbf95d004b45638736ab9d5092d078715f9c1a7d84b6f
+        image: docker.io/mbentley/timemachine:latest@sha256:3bb0c47dea1d61e06f4f65e2f11c259cbd989f4a6ed25e4d23f9dd74862a25a9
         env:
         - name: SMB_PORT
           value: "445"
