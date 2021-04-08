@@ -29,7 +29,7 @@ spec:
         - name: DJANGO_BUCKET_NAME
           value: calabouxi-demo
         - name: GOOGLE_APPLICATION_CREDENTIALS
-          value: /run/secrets/gcloud/srueg-labor-6fb30143dbef.json
+          value: /run/secrets/gcloud/key.json
         - name: DJANGO_DB_HOST
           value: vivanina-demo-postgresql
         - name: DJANGO_DB_PW
