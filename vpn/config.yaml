@@ -18,11 +18,6 @@ data:
     SaveConfig = false
 
     [Peer]
-    # iMac
-    PublicKey = sYko5QdPHfZkfeR+E9PI0rJqA2R0nsNLDTSb0wuKcjg=
-    AllowedIPs = 10.1.30.3/32,fdb0:5dfe:70d8:7f0b::3/128
-
-    [Peer]
     # Pixel4a
     PublicKey = jOqn6h664lvnKn9EDzytDAYSVfTtE4KP/V1mHSF7dn8=
     AllowedIPs = 10.1.30.4/32,fdb0:5dfe:70d8:7f0b::4/128
