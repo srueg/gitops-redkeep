@@ -32,3 +32,8 @@ data:
     PublicKey = WqMz2MI032ucMsN16f0IZHF4iHyRLtXIz0liX8uezng=
     AllowedIPs = 10.1.30.10/32,fdb0:5dfe:70d8:7f0b::10/128
     AllowedIPs = 192.168.10.1/24,2a02:168:f77a:42::1/64
+
+    [Peer]
+    # SI-553-SHL-MAC
+    PublicKey = 2aMonMuftj1Z2uNSyRNiSGljATbX4925HEr5s/uOmwQ=
+    AllowedIPs = 10.1.30.11/32,fdb0:5dfe:70d8:7f0b::11/128

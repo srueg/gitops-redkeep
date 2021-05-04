@@ -16,7 +16,7 @@ spec:
     metadata:
       labels:
         app: wireguard
-        config: "1"
+        config: "2"
     spec:
       restartPolicy: Always
       volumes:
