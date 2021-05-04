@@ -28,7 +28,7 @@ spec:
             name: wg0-conf
       containers:
         - name: wireguard
-          image: quay.io/srueg/wireguard:v0.1.0
+          image: quay.io/srueg/wireguard:v0.1.0@sha256:a6d99a9df873db7ddafc9c2b2efc0369aff1f81de40364685d02251addb48308
           imagePullPolicy: Always
           lifecycle:
             postStart:
