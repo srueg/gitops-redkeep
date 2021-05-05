@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
       - name: jellyfin
-        image: docker.io/jellyfin/jellyfin:10.7.2@sha256:c89380d0b2f3777df2ce21edf68ced9fc2c5f7dbbd8cb28a844126aac5d49a20
+        image: docker.io/jellyfin/jellyfin:10.7.5@sha256:cbf7f2b2e95563e7492ef4427db7d01251709657a59795e7b3e7bb2d658a605c
         imagePullPolicy: Always
         ports:
         - name: http
