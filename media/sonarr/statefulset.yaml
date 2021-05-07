@@ -84,6 +84,7 @@ spec:
             - mountPath: /tv/
               name: plex
               subPath: Series/
+              mountPropagation: HostToContainer
           ports:
             - name: sonarr
               containerPort: 8989
