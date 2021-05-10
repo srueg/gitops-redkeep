@@ -7,12 +7,12 @@ metadata:
     app.kubernetes.io/name: plex
     app.kubernetes.io/instance: plex
 spec:
-  storageClassName: "zfs"
+  storageClassName: zfs
   resources:
     requests:
-      storage: "100Gi"
+      storage: 100Gi
   accessModes:
-  - "ReadWriteOnce"
+  - ReadWriteOnce
   selector:
     matchLabels:
       usage: plex-data
