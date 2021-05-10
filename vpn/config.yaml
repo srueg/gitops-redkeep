@@ -9,7 +9,7 @@ data:
   wg0.conf: |
     [Interface]
     # PublicKey XZlb2mNUM+LahKF6tC6TEbGnBBimft1AIIsB0ot4ziE=
-    Address = 10.1.30.1/24,fdb0:5dfe:70d8:7f0b::1/48
+    Address = 10.1.30.1/24, fdb0:5dfe:70d8:7f0b::1/48
     ListenPort = 51820
     PostUp = wg set %i private-key /etc/wireguard/wg0.key
     PostUp = iptables  -t nat -A POSTROUTING -o eth0 -j MASQUERADE
@@ -22,20 +22,20 @@ data:
     [Peer]
     # Pixel4a
     PublicKey = jOqn6h664lvnKn9EDzytDAYSVfTtE4KP/V1mHSF7dn8=
-    AllowedIPs = 10.1.30.4/32,fdb0:5dfe:70d8:7f0b::4/128
+    AllowedIPs = 10.1.30.4/32, fdb0:5dfe:70d8:7f0b::4/128
 
     [Peer]
     # MacBook M.
     PublicKey = JIK3nSmGIOJR2ZqYtguBj1Ev0+WNiOjfFUBXKWZc+00=
-    AllowedIPs = 10.1.30.5/32,fdb0:5dfe:70d8:7f0b::5/128
+    AllowedIPs = 10.1.30.5/32, fdb0:5dfe:70d8:7f0b::5/128
 
     [Peer]
     # edgerouter-x
     PublicKey = WqMz2MI032ucMsN16f0IZHF4iHyRLtXIz0liX8uezng=
-    AllowedIPs = 10.1.30.10/32,fdb0:5dfe:70d8:7f0b::10/128
-    AllowedIPs = 192.168.10.0/24,2a02:168:f77a:42::/64
+    AllowedIPs = 10.1.30.10/32, fdb0:5dfe:70d8:7f0b::10/128
+    AllowedIPs = 192.168.10.0/24, 2a02:168:f77a:42::/64
 
     [Peer]
     # SI-553-SHL-MAC
     PublicKey = 2aMonMuftj1Z2uNSyRNiSGljATbX4925HEr5s/uOmwQ=
-    AllowedIPs = 10.1.30.11/32,fdb0:5dfe:70d8:7f0b::11/128
+    AllowedIPs = 10.1.30.11/32, fdb0:5dfe:70d8:7f0b::11/128
