@@ -19,6 +19,7 @@ spec:
         config: "3"
     spec:
       restartPolicy: Always
+      hostNetwork: true
       volumes:
         - name: wg0-key
           secret:
