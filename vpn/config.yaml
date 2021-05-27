@@ -43,3 +43,8 @@ data:
     # SI-553-SHL-MAC
     PublicKey = 2aMonMuftj1Z2uNSyRNiSGljATbX4925HEr5s/uOmwQ=
     AllowedIPs = 10.1.30.11/32, fdb0:5dfe:70d8:7f0b::11/128
+
+    [Peer]
+    # iPhone
+    PublicKey = kOnT6l20b2sML/r/i8ltRCabePoBsS7llicP8Xs49V8=
+    AllowedIPs = 10.1.30.12/32, fdb0:5dfe:70d8:7f0b::12/128
