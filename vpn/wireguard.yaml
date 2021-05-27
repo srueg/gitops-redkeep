@@ -16,7 +16,7 @@ spec:
     metadata:
       labels:
         app: wireguard
-        config: "3"
+        config: "4"
     spec:
       restartPolicy: Always
       hostNetwork: true
