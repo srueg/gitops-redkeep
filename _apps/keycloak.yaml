@@ -27,7 +27,7 @@ spec:
           - name: JAVA_OPTS
             value: >-
               -XX:+UseContainerSupport
-              -XX:MaxRAMPercentage=50.0
+              -XX:MaxRAMPercentage=25.0
               -Dkeycloak.profile.feature.account_api=enabled
               -Dkeycloak.profile.feature.account2=enabled
               -Djava.net.preferIPv4Stack=true
