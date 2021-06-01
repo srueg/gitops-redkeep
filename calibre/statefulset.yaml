@@ -21,7 +21,7 @@ spec:
     spec:
       containers:
       - name: calibre
-        image: docker.io/linuxserver/calibre-web:0.6.12-ls119@sha256:f18f77857c1adc5addcfef574ac2d5cf4bcb44e2be9cc26baa763a46b7facfe2
+        image: docker.io/linuxserver/calibre-web:0.6.12-ls120@sha256:10cb7d2f825727abf92c3f328aefbd772be0b2a5d538ddd55d6cd637bbc0d541
         imagePullPolicy: IfNotPresent
         env:
         - name: PUID
