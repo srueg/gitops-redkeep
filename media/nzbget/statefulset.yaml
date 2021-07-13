@@ -66,7 +66,7 @@ spec:
               path: /ping
               port: http
         - name: nzbget
-          image: docker.io/linuxserver/nzbget:v21.1-r2311-ls9@sha256:e1def230249d6c54c78b7acfe1415f34023ba9ed558afe7275dcac1cb39a9a25
+          image: docker.io/linuxserver/nzbget:161@sha256:27f9e7a975999ef269651e9ee2723158dfd8e32269092512a8ae5311a31e9c12
           imagePullPolicy: IfNotPresent
           env:
             - name: PUID
