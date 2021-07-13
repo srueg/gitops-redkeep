@@ -66,7 +66,7 @@ spec:
               path: /ping
               port: http
         - name: sonarr
-          image: docker.io/linuxserver/sonarr:2.0.0.5344-ls97@sha256:e560c7cc2d9258869ab0bdfa643fbe94cffe253de714f9ce374814a4fe2fc787
+          image: docker.io/linuxserver/sonarr:176@sha256:da13ef0d9d5f86d533523540be117d7e691ce346b010313ae1f0aa884ce903a9
           imagePullPolicy: IfNotPresent
           env:
             - name: PUID
