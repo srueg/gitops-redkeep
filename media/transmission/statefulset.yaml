@@ -66,7 +66,7 @@ spec:
               path: /ping
               port: http
         - name: transmission
-          image: docker.io/linuxserver/transmission:3.00-r2-ls94@sha256:5da00ad0a6b6bd6f17c5493d801fce1653bc73cb7221805c489da01c48c906f4
+          image: docker.io/linuxserver/transmission:163@sha256:7500fe2cc34a52da2dbf9a51246a4dc0eb66611c538765d9ca08447e5b49a0d0
           imagePullPolicy: IfNotPresent
           env:
             - name: PUID
