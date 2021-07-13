@@ -66,7 +66,7 @@ spec:
               path: /ping
               port: http
         - name: radarr
-          image: docker.io/linuxserver/radarr:0.2.0.1540-ls21@sha256:48febe804d52f406106b76aa68dc2ed81bbcd8870a39b2d5a24332be06817638
+          image: docker.io/linuxserver/radarr:151@sha256:89d6cbcb5e84b14f44701f661d143a330b00b6bae134858710e5744730c53c64
           imagePullPolicy: IfNotPresent
           env:
             - name: PUID
