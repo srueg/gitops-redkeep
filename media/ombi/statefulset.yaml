@@ -21,7 +21,7 @@ spec:
     spec:
       containers:
         - name: ombi
-          image: docker.io/linuxserver/ombi:3.0.5227-ls36@sha256:036b214980128c9aa05d89f3b58d1b8dc077f51ae9ee32f67d315ff7a868fbe2
+          image: docker.io/linuxserver/ombi:139@sha256:294e228e7288d75e7e6429639e56679bea66a2bf63ec69fc28ba9f01952ac163
           imagePullPolicy: IfNotPresent
           env:
             - name: PUID
